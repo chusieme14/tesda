@@ -2170,6 +2170,28 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2188,15 +2210,30 @@ __webpack_require__.r(__webpack_exports__);
         icon: 'mdi-account-box',
         name: 'approved'
       }],
-      isSuperAdmin: false
+      courses: [{
+        title: 'Ongoing',
+        icon: 'mdi-view-dashboard',
+        name: 'ongoing'
+      }, {
+        title: 'Incoming',
+        icon: 'mdi-account-box',
+        name: 'incoming'
+      }, {
+        title: 'Removed',
+        icon: 'mdi-account-box',
+        name: 'removed'
+      }],
+      isSuperAdmin: false,
+      isAuth: false
     };
   },
   methods: {
     logout: function logout() {
       var _this = this;
 
-      axios.get("api/logout").then(function (_ref) {
+      axios.get("/admin/api/logout").then(function (_ref) {
         var data = _ref.data;
+        _this.isAuth = false;
 
         _this.$router.push({
           name: 'login'
@@ -2206,12 +2243,9 @@ __webpack_require__.r(__webpack_exports__);
     getAuthuser: function getAuthuser() {
       var _this2 = this;
 
-      axios.get("/auth/user").then(function (_ref2) {
+      axios.get("/admin/api/checkuser").then(function (_ref2) {
         var data = _ref2.data;
-
-        if (data.role_id == 1) {
-          _this2.isSuperAdmin = true;
-        }
+        _this2.isAuth = data;
       });
     }
   },
@@ -2222,8 +2256,12 @@ __webpack_require__.r(__webpack_exports__);
     getCurrentUrl: function getCurrentUrl() {
       var url = this.$route.fullPath;
       var parts = url.split("/");
-      console.log(parts[2], "parts[2]");
-      return parts[2];
+      return parts[3];
+    }
+  },
+  watch: {
+    $route: function $route(to, from) {
+      this.getAuthuser();
     }
   }
 });
@@ -20752,155 +20790,261 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("v-app", [
-    _c(
-      "div",
-      { staticClass: "d-flex class-main-container" },
-      [
-        _c(
-          "v-navigation-drawer",
-          {
-            staticClass: " accent-4",
-            attrs: {
-              dark: "",
-              src: "https://cdn.vuetifyjs.com/images/backgrounds/bg-2.jpg",
-              permanent: ""
-            },
-            scopedSlots: _vm._u([
-              {
-                key: "append",
-                fn: function() {
-                  return [
-                    _c(
-                      "div",
-                      { staticClass: "pa-2" },
-                      [
-                        _c(
-                          "v-btn",
-                          {
-                            attrs: { block: "", color: "primary" },
-                            on: { click: _vm.logout }
-                          },
-                          [
-                            _vm._v(
-                              "\n                        Logout\n                    "
-                            )
-                          ]
-                        )
-                      ],
-                      1
-                    )
-                  ]
-                },
-                proxy: true
-              }
-            ])
-          },
-          [
-            _c(
-              "v-list",
-              [
-                _vm.isSuperAdmin
-                  ? _c(
-                      "v-list-item",
+  return _c(
+    "v-app",
+    [
+      _vm.isAuth
+        ? _c(
+            "div",
+            { staticClass: "d-flex class-main-container" },
+            [
+              _c(
+                "v-navigation-drawer",
+                {
+                  staticClass: " accent-4",
+                  attrs: {
+                    dark: "",
+                    src:
+                      "https://cdn.vuetifyjs.com/images/backgrounds/bg-2.jpg",
+                    permanent: ""
+                  },
+                  scopedSlots: _vm._u(
+                    [
                       {
-                        class: _vm.getCurrentUrl == "userlist" ? "active" : "",
-                        attrs: { link: "" }
-                      },
-                      [
-                        _c(
-                          "v-list-item-icon",
-                          [_c("v-icon", [_vm._v("mdi-account-box")])],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "router-link",
-                          {
-                            staticClass: "mt-2",
-                            attrs: {
-                              tag: "v-list-item-content",
-                              to: { name: "userlist" }
-                            }
-                          },
-                          [_c("p", [_vm._v("Users")])]
-                        )
-                      ],
-                      1
-                    )
-                  : _vm._e(),
-                _vm._v(" "),
-                _c(
-                  "v-list-group",
-                  {
-                    attrs: { value: true, "prepend-icon": "mdi-account-box" },
-                    scopedSlots: _vm._u([
-                      {
-                        key: "activator",
+                        key: "append",
                         fn: function() {
                           return [
-                            _c("v-list-item-title", [_vm._v("Appointments")])
+                            _c(
+                              "div",
+                              { staticClass: "pa-2" },
+                              [
+                                _c(
+                                  "v-btn",
+                                  {
+                                    attrs: { block: "", color: "primary" },
+                                    on: { click: _vm.logout }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                        Logout\n                    "
+                                    )
+                                  ]
+                                )
+                              ],
+                              1
+                            )
                           ]
                         },
                         proxy: true
                       }
-                    ])
-                  },
-                  [
-                    _vm._v(" "),
-                    _vm._l(_vm.appointments, function(appt, index) {
-                      return _c(
-                        "v-list-item",
+                    ],
+                    null,
+                    false,
+                    2664108953
+                  )
+                },
+                [
+                  _c(
+                    "v-list",
+                    [
+                      _vm.isSuperAdmin
+                        ? _c(
+                            "v-list-item",
+                            {
+                              class:
+                                _vm.getCurrentUrl == "userlist" ? "active" : "",
+                              attrs: { link: "" }
+                            },
+                            [
+                              _c(
+                                "v-list-item-icon",
+                                [_c("v-icon", [_vm._v("mdi-account-box")])],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "router-link",
+                                {
+                                  staticClass: "mt-2",
+                                  attrs: {
+                                    tag: "v-list-item-content",
+                                    to: { name: "userlist" }
+                                  }
+                                },
+                                [_c("p", [_vm._v("Users")])]
+                              )
+                            ],
+                            1
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _c(
+                        "v-list-group",
                         {
-                          key: index,
-                          class: _vm.getCurrentUrl == appt.name ? "active" : "",
-                          attrs: { link: "" }
+                          attrs: {
+                            value: true,
+                            "prepend-icon": "mdi-account-box"
+                          },
+                          scopedSlots: _vm._u(
+                            [
+                              {
+                                key: "activator",
+                                fn: function() {
+                                  return [
+                                    _c("v-list-item-title", [
+                                      _vm._v("Appointments")
+                                    ])
+                                  ]
+                                },
+                                proxy: true
+                              }
+                            ],
+                            null,
+                            false,
+                            3243207611
+                          )
                         },
                         [
-                          _c(
-                            "router-link",
-                            {
-                              staticClass: "pt2 class-sub-list",
-                              attrs: {
-                                tag: "v-list-item-content",
-                                to: { name: appt.name }
-                              }
-                            },
-                            [_c("p", [_vm._v(_vm._s(appt.title))])]
-                          ),
                           _vm._v(" "),
-                          _c(
-                            "v-list-item-icon",
-                            [
-                              _c("v-icon", {
+                          _vm._l(_vm.appointments, function(appt, index) {
+                            return _c(
+                              "v-list-item",
+                              {
+                                key: index,
                                 class:
                                   _vm.getCurrentUrl == appt.name
                                     ? "active"
                                     : "",
-                                domProps: { textContent: _vm._s(appt.icon) }
-                              })
-                            ],
-                            1
-                          )
+                                attrs: { link: "" }
+                              },
+                              [
+                                _c(
+                                  "router-link",
+                                  {
+                                    staticClass: "pt2 class-sub-list",
+                                    attrs: {
+                                      tag: "v-list-item-content",
+                                      to: { name: appt.name }
+                                    }
+                                  },
+                                  [_c("p", [_vm._v(_vm._s(appt.title))])]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "v-list-item-icon",
+                                  [
+                                    _c("v-icon", {
+                                      class:
+                                        _vm.getCurrentUrl == appt.name
+                                          ? "active"
+                                          : "",
+                                      domProps: {
+                                        textContent: _vm._s(appt.icon)
+                                      }
+                                    })
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            )
+                          })
                         ],
-                        1
+                        2
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-list-group",
+                        {
+                          attrs: {
+                            value: false,
+                            "prepend-icon": "mdi-account-box"
+                          },
+                          scopedSlots: _vm._u(
+                            [
+                              {
+                                key: "activator",
+                                fn: function() {
+                                  return [
+                                    _c("v-list-item-title", [_vm._v("Courses")])
+                                  ]
+                                },
+                                proxy: true
+                              }
+                            ],
+                            null,
+                            false,
+                            4063125961
+                          )
+                        },
+                        [
+                          _vm._v(" "),
+                          _vm._l(_vm.courses, function(appt, index) {
+                            return _c(
+                              "v-list-item",
+                              {
+                                key: index,
+                                class:
+                                  _vm.getCurrentUrl == appt.name
+                                    ? "active"
+                                    : "",
+                                attrs: { link: "" }
+                              },
+                              [
+                                _c(
+                                  "router-link",
+                                  {
+                                    staticClass: "pt2 class-sub-list",
+                                    attrs: {
+                                      tag: "v-list-item-content",
+                                      to: { name: appt.name }
+                                    }
+                                  },
+                                  [_c("p", [_vm._v(_vm._s(appt.title))])]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "v-list-item-icon",
+                                  [
+                                    _c("v-icon", {
+                                      class:
+                                        _vm.getCurrentUrl == appt.name
+                                          ? "active"
+                                          : "",
+                                      domProps: {
+                                        textContent: _vm._s(appt.icon)
+                                      }
+                                    })
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            )
+                          })
+                        ],
+                        2
                       )
-                    })
-                  ],
-                  2
-                )
-              ],
-              1
-            )
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "class-content" }, [_c("router-view")], 1)
-      ],
-      1
-    )
-  ])
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "class-content" },
+                [_c("router-view")],
+                1
+              )
+            ],
+            1
+          )
+        : _c("router-view")
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -82078,29 +82222,74 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]({
   //     meta:{ requiresAuth:true },
   //     children:[
   //     ]
-  //   },
+  // },
   {
-    path: '/admin/waiting',
+    path: '/admin',
     component: function component() {
       return __webpack_require__.e(/*! import() */ 0).then(__webpack_require__.bind(null, /*! @back/pages/appointment/index.vue */ "./resources/js/backoffice/src/pages/appointment/index.vue"));
     },
+    meta: {
+      requiresAuth: true
+    },
+    name: 'dashboard'
+  }, {
+    path: '/admin/appointment/waiting',
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ 0).then(__webpack_require__.bind(null, /*! @back/pages/appointment/index.vue */ "./resources/js/backoffice/src/pages/appointment/index.vue"));
+    },
+    meta: {
+      requiresAuth: true
+    },
     name: 'waiting'
   }, {
-    path: '/admin/approved',
+    path: '/admin/appointment/approved',
     component: function component() {
-      return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! @back/pages/appointment/approve.vue */ "./resources/js/backoffice/src/pages/appointment/approve.vue"));
+      return __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! @back/pages/appointment/approve.vue */ "./resources/js/backoffice/src/pages/appointment/approve.vue"));
+    },
+    meta: {
+      requiresAuth: true
     },
     name: 'approved'
   }, {
+    path: '/admin/course/ongoing',
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! @back/pages/appointment/approve.vue */ "./resources/js/backoffice/src/pages/appointment/approve.vue"));
+    },
+    meta: {
+      requiresAuth: true
+    },
+    name: 'ongoing'
+  }, {
+    path: '/admin/course/incoming',
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ 0).then(__webpack_require__.bind(null, /*! @back/pages/appointment/index.vue */ "./resources/js/backoffice/src/pages/appointment/index.vue"));
+    },
+    meta: {
+      requiresAuth: true
+    },
+    name: 'incoming'
+  }, {
+    path: '/admin/course/removed',
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ 0).then(__webpack_require__.bind(null, /*! @back/pages/appointment/index.vue */ "./resources/js/backoffice/src/pages/appointment/index.vue"));
+    },
+    meta: {
+      requiresAuth: true
+    },
+    name: 'removed'
+  }, {
     path: '/admin/userlist',
     component: function component() {
-      return __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! @back/pages/user/index.vue */ "./resources/js/backoffice/src/pages/user/index.vue"));
+      return __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(null, /*! @back/pages/user/index.vue */ "./resources/js/backoffice/src/pages/user/index.vue"));
+    },
+    meta: {
+      requiresAuth: true
     },
     name: 'userlist'
   }, {
     path: '/admin/login',
     component: function component() {
-      return __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(null, /*! @back/layout/login.vue */ "./resources/js/backoffice/src/layout/login.vue"));
+      return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! @back/layout/login.vue */ "./resources/js/backoffice/src/layout/login.vue"));
     },
     name: 'login'
   }]
@@ -82149,6 +82338,7 @@ window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+window.axios.defaults.withCredentials = true;
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting

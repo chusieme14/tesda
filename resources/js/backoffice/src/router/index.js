@@ -18,20 +18,47 @@ const router = new Router({
         //     meta:{ requiresAuth:true },
         //     children:[
         //     ]
-        //   },
+        // },
         {
-            path:'/admin/waiting',
+            path:'/admin',
             component: () => import('@back/pages/appointment/index.vue'),
+            meta:{ requiresAuth:true },
+            name:'dashboard'
+        },
+        {
+            path:'/admin/appointment/waiting',
+            component: () => import('@back/pages/appointment/index.vue'),
+            meta:{ requiresAuth:true },
             name:'waiting'
         },
         {
-            path:'/admin/approved',
-            component: () => import('@back/pages/appointment/approve.vue'),
-            name:'approved'
+          path:'/admin/appointment/approved',
+          component: () => import('@back/pages/appointment/approve.vue'),
+          meta:{ requiresAuth:true },
+          name:'approved'
+        },
+        {
+          path:'/admin/course/ongoing',
+          component: () => import('@back/pages/appointment/approve.vue'),
+          meta:{ requiresAuth:true },
+          name:'ongoing'
+        },
+        {
+            path:'/admin/course/incoming',
+            component: () => import('@back/pages/appointment/index.vue'),
+            meta:{ requiresAuth:true },
+            name:'incoming'
+        },
+        {
+            path:'/admin/course/removed',
+            component: () => import('@back/pages/appointment/index.vue'),
+            meta:{ requiresAuth:true },
+            name:'removed'
         },
         {
             path:'/admin/userlist',
             component: () => import('@back/pages/user/index.vue'),
+            meta:{ requiresAuth:true },
             name:'userlist'
         },
         {

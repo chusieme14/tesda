@@ -1,6 +1,6 @@
 <template>
     <v-app>
-        <div class="d-flex class-main-container">
+        <div v-if="isAuth" class="d-flex class-main-container">
             <v-navigation-drawer
                 class=" accent-4"
                 dark
@@ -42,6 +42,27 @@
                             </v-list-item-icon>
                         </v-list-item>
                     </v-list-group>
+                    <v-list-group
+                        :value="false"
+                        prepend-icon="mdi-account-box"
+                    >
+                        <template v-slot:activator>
+                            <v-list-item-title>Courses</v-list-item-title>
+                        </template>
+
+                        <v-list-item
+                            v-for="(appt, index) in courses" :key="index"
+                            link
+                            :class="getCurrentUrl == appt.name ? 'active' : ''"
+                        >
+                            <router-link class="pt2 class-sub-list" tag="v-list-item-content" :to="{ name: appt.name }">
+                                <p>{{ appt.title }}</p>
+                            </router-link>
+                            <v-list-item-icon>
+                                <v-icon :class="getCurrentUrl == appt.name ? 'active' : ''" v-text="appt.icon"></v-icon>
+                            </v-list-item-icon>
+                        </v-list-item>
+                    </v-list-group>
                 </v-list>
 
                 <template v-slot:append>
@@ -56,6 +77,7 @@
                 <router-view></router-view>
             </div>
         </div>
+        <router-view v-else></router-view>
     </v-app>
 </template>
 <script>
@@ -72,33 +94,42 @@ export default {
                 { title: 'For approval', icon: 'mdi-view-dashboard', name:'waiting' },
                 { title: 'Approved', icon: 'mdi-account-box', name:'approved' },
             ],
+            courses: [
+                { title: 'Ongoing', icon: 'mdi-view-dashboard', name:'ongoing' },
+                { title: 'Incoming', icon: 'mdi-account-box', name:'incoming' },
+                { title: 'Removed', icon: 'mdi-account-box', name:'removed' },
+            ],
             isSuperAdmin:false,
+            isAuth:false
         }
     },
     methods:{
         logout(){
-            axios.get(`api/logout`).then(({data})=>{
+            axios.get(`/admin/api/logout`).then(({data})=>{
+                this.isAuth = false
                 this.$router.push({name:'login'})
             })
         },
         getAuthuser(){
-            axios.get(`/auth/user`).then(({data})=>{
-                if(data.role_id == 1){
-                    this.isSuperAdmin = true
-                }
+            axios.get(`/admin/api/checkuser`).then(({data})=>{
+                this.isAuth = data
             })
       }
     },
     created(){
-        this.getAuthuser();
+        this.getAuthuser()
     },
     computed:{
         getCurrentUrl() {
-            let url = this.$route.fullPath;
-            let parts = url.split("/");
-            console.log(parts[2],"parts[2]")
-            return parts[2];
+            let url = this.$route.fullPath
+            let parts = url.split("/")
+            return parts[3]
         },
+    },
+    watch:{
+        $route (to, from){
+           this.getAuthuser()
+        }
     }
 }
 </script>
