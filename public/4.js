@@ -1,6 +1,5 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[4],{
 
-<<<<<<< HEAD
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/backoffice/src/pages/appointment/approve.vue?vue&type=script&lang=js&":
 /*!****************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/backoffice/src/pages/appointment/approve.vue?vue&type=script&lang=js& ***!
@@ -139,12 +138,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /*!********************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/backoffice/src/pages/appointment/approve.vue?vue&type=template&id=4418d3f9& ***!
   \********************************************************************************************************************************************************************************************************************************/
-=======
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/frontoffice/src/pages/about_us/index.vue?vue&type=template&id=58d88831&":
-/*!****************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/frontoffice/src/pages/about_us/index.vue?vue&type=template&id=58d88831& ***!
-  \****************************************************************************************************************************************************************************************************************************/
->>>>>>> front
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -156,7 +149,6 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-<<<<<<< HEAD
   return _c(
     "div",
     [
@@ -273,9 +265,6 @@ var render = function() {
     ],
     1
   )
-=======
-  return _c("div", [_vm._v("\n    about-us\n")])
->>>>>>> front
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -284,50 +273,29 @@ render._withStripped = true
 
 /***/ }),
 
-<<<<<<< HEAD
 /***/ "./resources/js/backoffice/src/pages/appointment/approve.vue":
 /*!*******************************************************************!*\
   !*** ./resources/js/backoffice/src/pages/appointment/approve.vue ***!
   \*******************************************************************/
-=======
-/***/ "./resources/js/frontoffice/src/pages/about_us/index.vue":
-/*!***************************************************************!*\
-  !*** ./resources/js/frontoffice/src/pages/about_us/index.vue ***!
-  \***************************************************************/
->>>>>>> front
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-<<<<<<< HEAD
 /* harmony import */ var _approve_vue_vue_type_template_id_4418d3f9___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./approve.vue?vue&type=template&id=4418d3f9& */ "./resources/js/backoffice/src/pages/appointment/approve.vue?vue&type=template&id=4418d3f9&");
 /* harmony import */ var _approve_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./approve.vue?vue&type=script&lang=js& */ "./resources/js/backoffice/src/pages/appointment/approve.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
-=======
-/* harmony import */ var _index_vue_vue_type_template_id_58d88831___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index.vue?vue&type=template&id=58d88831& */ "./resources/js/frontoffice/src/pages/about_us/index.vue?vue&type=template&id=58d88831&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-var script = {}
->>>>>>> front
 
 
 /* normalize component */
 
-<<<<<<< HEAD
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
   _approve_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
   _approve_vue_vue_type_template_id_4418d3f9___WEBPACK_IMPORTED_MODULE_0__["render"],
   _approve_vue_vue_type_template_id_4418d3f9___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-=======
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
-  script,
-  _index_vue_vue_type_template_id_58d88831___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _index_vue_vue_type_template_id_58d88831___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
->>>>>>> front
   false,
   null,
   null,
@@ -337,16 +305,11 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-<<<<<<< HEAD
 component.options.__file = "resources/js/backoffice/src/pages/appointment/approve.vue"
-=======
-component.options.__file = "resources/js/frontoffice/src/pages/about_us/index.vue"
->>>>>>> front
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-<<<<<<< HEAD
 /***/ "./resources/js/backoffice/src/pages/appointment/approve.vue?vue&type=script&lang=js&":
 /*!********************************************************************************************!*\
   !*** ./resources/js/backoffice/src/pages/appointment/approve.vue?vue&type=script&lang=js& ***!
@@ -365,28 +328,15 @@ __webpack_require__.r(__webpack_exports__);
 /*!**************************************************************************************************!*\
   !*** ./resources/js/backoffice/src/pages/appointment/approve.vue?vue&type=template&id=4418d3f9& ***!
   \**************************************************************************************************/
-=======
-/***/ "./resources/js/frontoffice/src/pages/about_us/index.vue?vue&type=template&id=58d88831&":
-/*!**********************************************************************************************!*\
-  !*** ./resources/js/frontoffice/src/pages/about_us/index.vue?vue&type=template&id=58d88831& ***!
-  \**********************************************************************************************/
->>>>>>> front
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-<<<<<<< HEAD
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_approve_vue_vue_type_template_id_4418d3f9___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./approve.vue?vue&type=template&id=4418d3f9& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/backoffice/src/pages/appointment/approve.vue?vue&type=template&id=4418d3f9&");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_approve_vue_vue_type_template_id_4418d3f9___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_approve_vue_vue_type_template_id_4418d3f9___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-=======
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_template_id_58d88831___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./index.vue?vue&type=template&id=58d88831& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/frontoffice/src/pages/about_us/index.vue?vue&type=template&id=58d88831&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_template_id_58d88831___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_template_id_58d88831___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
->>>>>>> front
 
 
 
