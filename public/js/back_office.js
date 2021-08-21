@@ -82253,7 +82253,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]({
   }, {
     path: '/admin/course/ongoing',
     component: function component() {
-      return __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(null, /*! @back/pages/course/index.vue */ "./resources/js/backoffice/src/pages/course/index.vue"));
+      return __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! @back/pages/course/index.vue */ "./resources/js/backoffice/src/pages/course/index.vue"));
     },
     meta: {
       requiresAuth: true
@@ -82280,7 +82280,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]({
   }, {
     path: '/admin/userlist',
     component: function component() {
-      return __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! @back/pages/user/index.vue */ "./resources/js/backoffice/src/pages/user/index.vue"));
+      return __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(null, /*! @back/pages/user/index.vue */ "./resources/js/backoffice/src/pages/user/index.vue"));
     },
     meta: {
       requiresAuth: true

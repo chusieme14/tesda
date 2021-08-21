@@ -19,7 +19,8 @@ class CreateCoursesTable extends Migration
             $table->string('name');
             $table->string('durations');
             $table->string('description');
-            $table->string('thumbnail');
+            $table->string('status')->default(0);
+            $table->string('thumbnail')->nullable();
             $table->timestamps();
         });
     }

@@ -1,18 +1,19 @@
 <template>
     <div>
         <v-navigation-drawer
-              v-model="drawer"
+              v-model="isadd"
               absolute
               temporary
               right
-              width="700"
+              width="600"
           >
-            <!-- <side-form
+            <side-form
               :appointment="selectedAppointment"
               @update = "update"
+              @create = "create"
             >
 
-            </side-form> -->
+            </side-form>
         </v-navigation-drawer>
         <v-card
           elevation="1"
@@ -20,6 +21,8 @@
         >
           <v-card-title>
             {{$route.name.charAt(0).toUpperCase() + $route.name.slice(1)}}
+            <v-spacer></v-spacer>
+            <v-btn @click="isadd=true">Add Course</v-btn>
           </v-card-title>
           <v-card-text>
             <v-simple-table
@@ -27,6 +30,9 @@
           <template v-slot:default>
             <thead>
               <tr>
+                <th class="text-left">
+                  Thumbnail
+                </th>
                 <th class="text-left">
                   Course Code
                 </th>
@@ -49,10 +55,18 @@
                 v-for="item in courses"
                 :key="item.id"
               >
-                <td>{{ item.fname + ' ' + item.lname}}</td>
-                <td>{{ item.email }}</td>
-                <td>{{ item.mobile_number }}</td>
-                <td>{{ item.appt_date }}</td>
+                <td>
+                  <v-avatar>
+                    <img
+                      :src="item.thumbnail"
+                      alt="John"
+                    >
+                  </v-avatar>
+                </td>
+                <td>{{ item.course_code }}</td>
+                <td>{{ item.name }}</td>
+                <td>{{ item.description }}</td>
+                <td>{{ item.durations }}</td>
                 <td class="text-center">
                   <v-btn fab
                     x-small color="primary"
@@ -98,11 +112,11 @@
     </div>
 </template>
 <script>
-// import SideForm from './sideform'
+import SideForm from './sideform'
 import DialogConfirmation from '../user/dialog'
 export default {
     components:{
-    //   SideForm,
+      SideForm,
       DialogConfirmation
     },
     data () {
@@ -113,10 +127,18 @@ export default {
         user:[],
         isfetching:true,
         selectedAppointment:[],
-        isprocessing:false
+        isprocessing:false,
+        isadd:false
       }
     },
     methods:{
+      create(value){
+        axios.post(`/admin/add/course`,value).then(({data})=>{
+            console.log(data,"jsdhjsdhjsdhjsdh")
+          this.courses = data
+          this.isfetching = false
+        })
+      },
       getCourses(){
         this.isfetching = true
         axios.get(`/admin/ongoing/courses/${1}`).then(({data})=>{
