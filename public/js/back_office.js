@@ -82244,7 +82244,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]({
   }, {
     path: '/admin/appointment/approved',
     component: function component() {
-      return __webpack_require__.e(/*! import() */ 5).then(__webpack_require__.bind(null, /*! @back/pages/appointment/approve.vue */ "./resources/js/backoffice/src/pages/appointment/approve.vue"));
+      return __webpack_require__.e(/*! import() */ 4).then(__webpack_require__.bind(null, /*! @back/pages/appointment/approve.vue */ "./resources/js/backoffice/src/pages/appointment/approve.vue"));
     },
     meta: {
       requiresAuth: true
@@ -82362,7 +82362,7 @@ window.axios.defaults.withCredentials = true;
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/romar/Projects/tesda/resources/js/backoffice/back_office.js */"./resources/js/backoffice/back_office.js");
+module.exports = __webpack_require__(/*! /home/qonvex/projects/tesda/resources/js/backoffice/back_office.js */"./resources/js/backoffice/back_office.js");
 
 
 /***/ })
