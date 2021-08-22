@@ -39,7 +39,7 @@ const router = new Router({
         },
         {
           path:'/admin/course/ongoing',
-          component: () => import('@back/pages/appointment/approve.vue'),
+          component: () => import('@back/pages/course/index.vue'),
           meta:{ requiresAuth:true },
           name:'ongoing'
         },
