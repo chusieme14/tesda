@@ -82244,7 +82244,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]({
   }, {
     path: '/admin/appointment/approved',
     component: function component() {
-      return __webpack_require__.e(/*! import() */ 4).then(__webpack_require__.bind(null, /*! @back/pages/appointment/approve.vue */ "./resources/js/backoffice/src/pages/appointment/approve.vue"));
+      return __webpack_require__.e(/*! import() */ 5).then(__webpack_require__.bind(null, /*! @back/pages/appointment/approve.vue */ "./resources/js/backoffice/src/pages/appointment/approve.vue"));
     },
     meta: {
       requiresAuth: true
