@@ -43,11 +43,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: {
-    email: {
-      type: String
-    }
-  },
+  // props:{
+  //     email:{
+  //         type:String
+  //     }
+  // },
   data: function data() {
     return {};
   },
@@ -559,11 +559,7 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("v-card-text", [
-            _vm._v(
-              "\n            Are you sure you want to remove " +
-                _vm._s(_vm.email) +
-                "?\n        "
-            )
+            _vm._v("\n            Are you sure you want to remove?\n        ")
           ]),
           _vm._v(" "),
           _c(

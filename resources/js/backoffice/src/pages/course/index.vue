@@ -8,7 +8,7 @@
               width="600"
           >
             <side-form
-              :appointment="selectedAppointment"
+              :course="selectedAppointment"
               @update = "update"
               @create = "create"
             >
@@ -22,7 +22,7 @@
           <v-card-title>
             {{$route.name.charAt(0).toUpperCase() + $route.name.slice(1)}}
             <v-spacer></v-spacer>
-            <v-btn @click="isadd=true">Add Course</v-btn>
+            <v-btn v-if="$route.name!='removed'" @click="selectedAppointment=[],isadd=true">Add Course</v-btn>
           </v-card-title>
           <v-card-text>
             <v-simple-table
@@ -55,7 +55,9 @@
                 v-for="item in courses"
                 :key="item.id"
               >
-                <td>
+                <td style="cursor:pointer;"
+                  @click="selectedThumbnail=item.thumbnail, isthumbnail=true"
+                >
                   <v-avatar>
                     <img
                       :src="item.thumbnail"
@@ -69,6 +71,7 @@
                 <td>{{ item.durations }}</td>
                 <td class="text-center">
                   <v-btn fab
+                    v-if="$route.name=='incoming'"
                     x-small color="primary"
                     @click="accept(item)"
                     :disabled="isprocessing"
@@ -78,7 +81,7 @@
                   <v-btn fab
                     x-small color="success"
                     :disabled="isprocessing"
-                    @click="selectedAppointment = item ,drawer = true"
+                    @click="selectedAppointment = item ,isadd = true"
                   >
                     <v-icon> mdi-pencil </v-icon>
                   </v-btn>
@@ -102,12 +105,24 @@
         >
 
           <dialog-confirmation
-            :email = "selectedAppointment.email"
             @cancel = "cancel"
             @accept = "confirm"
           >
 
           </dialog-confirmation>
+        </v-dialog>
+        <v-dialog
+            v-model="isthumbnail"
+            max-width="450"
+        >
+          <div class="main-dialog">
+            <div class="dia-thumbnail">
+              <img :src="selectedThumbnail" alt="">
+            </div>
+            <div class="dia-btn">
+              <v-btn>save</v-btn>
+            </div>
+          </div>
         </v-dialog>
     </div>
 </template>
@@ -128,49 +143,66 @@ export default {
         isfetching:true,
         selectedAppointment:[],
         isprocessing:false,
-        isadd:false
+        isadd:false,
+        status:0,
+        isthumbnail:false,
+        selectedThumbnail:''
       }
     },
+    watch: {
+      '$route' (to, from) {
+        if(this.$route.name=='ongoing') this.status = 1
+        if(this.$route.name=='removed') this.status = 2
+        if(this.$route.name=='incoming') this.status = 0
+        this.getCourses()
+        console.log(this.status,"jdgshjadgsjdg")
+      }
+    },
+    mounted(){
+        if(this.$route.name=='ongoing') this.status = 1
+        if(this.$route.name=='removed') this.status = 2
+        if(this.$route.name=='incoming') this.status = 0
+        this.getCourses()
+    }, 
     methods:{
       create(value){
+        this.isadd = false
+        value.status = this.status
+        console.log(value)
         axios.post(`/admin/add/course`,value).then(({data})=>{
-            console.log(data,"jsdhjsdhjsdhjsdh")
-          this.courses = data
+          this.getCourses()
           this.isfetching = false
+          this.$toast.open({ message: `Course is successfully added`, position: 'top-right', type: "success", duration: 5000})
         })
       },
       getCourses(){
         this.isfetching = true
-        axios.get(`/admin/ongoing/courses/${1}`).then(({data})=>{
-            console.log(data,"jsdhjsdhjsdhjsdh")
+        axios.get(`/admin/ongoing/courses/${this.status}`).then(({data})=>{
           this.courses = data
           this.isfetching = false
         })
       },
       getAuthuser(){
         axios.get(`/auth/user`).then(({data})=>{
-          console.log(data,"user")
           this.user = data
           this.getCourses()
         })
       },
       accept(value){
         this.isprocessing = true
-        value.user_id = this.user.id
-        let payload = value
-        axios.put('/admin/accept/appointment',{...payload}).then(({data})=>{
+        axios.put(`/admin/active/course/${value.id}`).then(({data})=>{
           this.getCourses()
           this.isprocessing = false
           this.$toast.open({ message: `Appointment of ${payload.lname +' '+payload.fname} is successfully updated`, position: 'top-right', type: "success", duration: 5000})
         })
       },
       update(value){
-        this.drawer = false
+        this.isadd = false
         this.isprocessing = true
-        axios.put('/admin/move/appointment',{...value}).then(({data})=>{
+        axios.put(`/admin/update/course/${value.id}`,{...value}).then(({data})=>{
           this.getCourses()
           this.isprocessing = false
-          this.$toast.open({ message: `Appointment of ${value.lname +' '+value.fname} is successfully moved`, position: 'top-right', type: "success", duration: 5000})
+          this.$toast.open({ message: `Course is successfully update`, position: 'top-right', type: "success", duration: 5000})
         })
       },
       cancel(){
@@ -179,15 +211,27 @@ export default {
       confirm(){
         this.isdelete = false
         this.isprocessing = true
-        axios.delete(`/admin/remove/appointment/${this.selectedAppointment.id}`).then(({data})=>{
+        axios.delete(`/admin/remove/course/${this.selectedAppointment.id}`).then(({data})=>{
           this.getCourses()
           this.isprocessing = false
           this.$toast.open({ message: `Appointment of ${this.selectedAppointment.lname +' '+this.selectedAppointment.fname} is successfully removed`, position: 'top-right', type: "success", duration: 5000})
         })
       }
-    },
-    created(){
-      this.getAuthuser()
     }
 }
 </script>
+<style scoped>
+.dia-thumbnail{
+  display: flex;
+  justify-content: center;
+  background-color: white;
+  margin-bottom: 30px;
+}
+.dia-btn{
+  display: flex;
+  justify-content: flex-end;
+}
+.main-dialog{
+  padding: 20px;
+}
+</style>
