@@ -15,6 +15,7 @@ class CourseController extends Controller
         $course = Course::create([
             'course_code' => $request->course_code,
             'name' => $request->name,
+            'status' => $request->status,
             'durations' => $request->durations,
             'description' => $request->description,
         ]);
@@ -36,5 +37,26 @@ class CourseController extends Controller
         $course->update([
             'thumbnail' =>  '/courses/thumbnail' . '/' . $imageName,
         ]);
+    }
+    public function removeCourse(Course $course){
+        if($course->status == 2){
+            return $course->delete();
+        } 
+        $course->status = 2;
+        $course->save();
+    }
+    public function updateCourse(Request $request, Course $course){
+        $course->update([
+            'course_code' => $request->course_code,
+            'name' => $request->name,
+            'status' => $request->status,
+            'durations' => $request->durations,
+            'description' => $request->description,
+        ]);
+        return $course;
+    }
+    public function activeCourse(Course $course){
+        $course->status = 1;
+        $course->save();
     }
 }

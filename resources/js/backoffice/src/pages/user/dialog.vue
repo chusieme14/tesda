@@ -6,7 +6,7 @@
             </v-card-title>
 
             <v-card-text>
-                Are you sure you want to remove {{email}}?
+                Are you sure you want to remove?
             </v-card-text>
 
             <v-card-actions>
@@ -33,11 +33,11 @@
 </template>
 <script>
 export default {
-    props:{
-        email:{
-            type:String
-        }
-    },
+    // props:{
+    //     email:{
+    //         type:String
+    //     }
+    // },
     data(){
         return{
             

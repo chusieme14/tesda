@@ -6,7 +6,7 @@
                 <v-container>
                     <v-layout wrap row>
                         <v-flex xs12 md6>
-                            <v-label>Code </v-label> <br>
+                            <v-label>Code</v-label>
                             <v-text-field
                                 solo
                                 dense
@@ -17,18 +17,17 @@
                             </v-text-field>
                         </v-flex>
                         <v-flex xs12 md6>
-                            <v-label>Title </v-label> <br>
+                            <v-label>Title </v-label>
                             <v-text-field
                                 solo
                                 dense
                                 v-model="courseDetails.name"
                                 
                             >
-
                             </v-text-field>
                         </v-flex>
                         <v-flex xs12 md6>
-                            <v-label>Duration </v-label> <br>
+                            <v-label>Duration </v-label>
                             <v-text-field
                                 solo
                                 dense
@@ -39,7 +38,7 @@
                             </v-text-field>
                         </v-flex>
                         <v-flex md12>
-                            <v-label> Description</v-label> <br>
+                            <v-label> Description</v-label>
                             <v-textarea
                                 solo
                                 dense
@@ -51,6 +50,7 @@
                         </v-flex>
                         <v-flex style="margin-top:-20px" md3>
                             <v-btn
+                                v-if="!courseDetails.id"
                                 color="blue-grey"
                                 class="white--text"
                                 @click="triggerUpload()"
@@ -66,15 +66,17 @@
                         <input ref="file_input" accept=".pdf, .jpg, .png " style="display: none" type="file" @change="uploadFile()">
                         </v-flex>
                         <v-flex v-if="isupload" style="margin-top:-20px" md9>
-                            <p>{{courseDetails.logo_name}} sewewe</p>
+                            <p>{{courseDetails.logo_name}}</p>
                         </v-flex>
                     </v-layout>
                 </v-container>
             </v-card-text>
             <v-card-actions>
                 <v-spacer></v-spacer>
+                <p v-if="haserror" style="color:red; margin-top:17px;"> please fill up all field above </p>
                                 
                 <v-btn
+                    class="ml-2"
                     color="primary"
                     @click="save"
                 >
@@ -93,6 +95,7 @@ export default {
     },
     data(){
         return{
+            haserror:false,
             menu1:false,
             courseDetails:{
             },
@@ -132,6 +135,12 @@ export default {
         //     })
         // },
         save(){
+            if(!this.courseDetails.course_code || !this.courseDetails.name || !this.courseDetails.durations
+            || !this.courseDetails.description) return this.haserror = true
+            if(this.courseDetails.id){
+                this.$emit('update',this.courseDetails)
+                return
+            }
             this.$emit('create',this.courseDetails)
         }
     },
@@ -144,14 +153,22 @@ export default {
                 return true
             else return false 
         }
+        
     },
     watch:{
         course:{
             handler(value){
-                this.courseDetails = []
+                this.courseDetails = {}
                 this.ischange = true
                 Object.assign(this.courseDetails,value)
                 this.isfetching = false
+            },deep:true
+        },
+        courseDetails:{
+            handler(){
+                if(!this.courseDetails.course_code && !this.courseDetails.name && !this.courseDetails.durations
+                    && !this.courseDetails.description && !this.courseDetails.thumbnail) 
+                        this.haserror = false
             },deep:true
         }
     },

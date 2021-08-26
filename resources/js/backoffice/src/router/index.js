@@ -45,13 +45,13 @@ const router = new Router({
         },
         {
             path:'/admin/course/incoming',
-            component: () => import('@back/pages/appointment/index.vue'),
+            component: () => import('@back/pages/course/index.vue'),
             meta:{ requiresAuth:true },
             name:'incoming'
         },
         {
             path:'/admin/course/removed',
-            component: () => import('@back/pages/appointment/index.vue'),
+            component: () => import('@back/pages/course/index.vue'),
             meta:{ requiresAuth:true },
             name:'removed'
         },
