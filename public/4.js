@@ -17,7 +17,29 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      isfetching: false,
+      courses: false
+    };
+  },
+  mounted: function mounted() {
+    this.getCourses;
+  },
+  methods: {
+    getCourses: function getCourses() {
+      var _this = this;
+
+      this.isfetching = true;
+      axios.get("/admin/ongoing/courses/".concat(1)).then(function (_ref) {
+        var data = _ref.data;
+        _this.courses = data;
+        _this.isfetching = false;
+      });
+    }
+  }
+});
 
 /***/ }),
 
@@ -91,7 +113,7 @@ var render = function() {
       staticClass: "fixed-container container-grid",
       staticStyle: { padding: "20px" }
     },
-    _vm._l(20, function(courses, id) {
+    _vm._l(_vm.courses, function(course, id) {
       return _c("div", { key: id, staticClass: "card-container" }, [
         _vm._v("\n         " + _vm._s(id) + "\n     ")
       ])

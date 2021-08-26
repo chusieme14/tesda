@@ -1,6 +1,7 @@
 <template>
     <v-app>
         <div class="main-bg">
+            <side-bar :drawer="drawer"></side-bar>
             <navigation-bar></navigation-bar>
             <main-content></main-content>
             <div class="footer d-flex">
@@ -23,10 +24,11 @@
 <script>
 import navigationBar from './NavigationBar.vue'
 import mainContent from './MainContent.vue'
+import sideBar from './SideBar.vue'
 export default {
     data(){
         return{
-
+            drawer: true
         }
     },
     methods:{
@@ -40,7 +42,8 @@ export default {
     },
     components:{
         navigationBar,
-        mainContent
+        mainContent,
+        sideBar
     }
 }
 </script>

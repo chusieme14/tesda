@@ -1,6 +1,6 @@
 <template>
     <div style="padding: 20px;" class="fixed-container container-grid">
-         <div v-for="(courses, id) in 20"  :key="id" class="card-container">
+         <div v-for="(course, id) in courses"  :key="id" class="card-container">
              {{id}}
          </div>
     </div>
@@ -8,7 +8,24 @@
 
 <script>
 export default {
-    
+    data(){
+        return{
+            isfetching: false,
+            courses: false
+        }
+    },
+    mounted(){
+        this.getCourses
+    },
+    methods:{
+        getCourses(){
+            this.isfetching = true
+            axios.get(`/admin/ongoing/courses/${1}`).then(({data})=>{
+                this.courses = data
+                this.isfetching = false
+            })
+        },
+    }
 }
 </script>
 
