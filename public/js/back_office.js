@@ -82428,7 +82428,7 @@ window.axios.defaults.withCredentials = true;
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/qonvex/projects/tesda/resources/js/backoffice/back_office.js */"./resources/js/backoffice/back_office.js");
+module.exports = __webpack_require__(/*! /home/romar/Projects/tesda/resources/js/backoffice/back_office.js */"./resources/js/backoffice/back_office.js");
 
 
 /***/ })

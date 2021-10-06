@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CourseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
+Route::get('/front/courses/{status}',[CourseController::class,'getCourses']);
 Route::get('{any?}',function(){
     return view('front.app');
 })->where('any','.*');

@@ -17,6 +17,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -25,17 +42,18 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    this.getCourses;
+    this.getCourses();
   },
   methods: {
     getCourses: function getCourses() {
       var _this = this;
 
       this.isfetching = true;
-      axios.get("/admin/ongoing/courses/".concat(1)).then(function (_ref) {
+      axios.get("/front/courses/".concat(1)).then(function (_ref) {
         var data = _ref.data;
         _this.courses = data;
         _this.isfetching = false;
+        console.log(data);
       });
     }
   }
@@ -55,7 +73,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../../node_module
 
 
 // module
-exports.push([module.i, "\n.fixed-container[data-v-1f7c8f8d]{\n    overflow: auto;\n    overflow-x: hidden;\n    min-height: 57vh;\n    max-height: 57vh;\n}\n.container-grid[data-v-1f7c8f8d] {\n    display: grid;\n    gap: 1rem;\n    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));\n    grid-auto-rows: 150px;\n}\n.card-container[data-v-1f7c8f8d] {\n    z-index: 1;\n    display: flex;\n    flex-direction: row;\n    justify-content: center;\n    align-items: center;\n    background: #171d30;\n    color: #f4f7fb;\n    box-shadow: rgba(3, 8, 20, 0.1) 0px 0.15rem 0.5rem, rgba(2, 8, 20, 0.1) 0px 0.075rem 0.175rem;\n    height: 100%;\n    width: 100%;\n    border-radius: 4px;\n    transition: all 500ms;\n    overflow: hidden;\n    border: 1px solid #37474F;\n    background-size: cover;\n    background-position: center;\n    background-repeat: no-repeat;\n    opacity: 0.5;\n}\n\n/* .card-container:hover {\n    box-shadow: rgba(2, 8, 20, 0.1) 0px 0.35em 1.175em, rgba(2, 8, 20, 0.08) 0px 0.175em 0.5em;\n    border: 1px solid #171d30;\n} */\n", ""]);
+exports.push([module.i, "\n.container-grid[data-v-1f7c8f8d] {\n    display: grid;\n    gap: 1rem;\n    grid-template-columns: repeat(auto-fill, minmax(70vw, 1fr));\n    grid-auto-rows: 50px;\n}\n.course-img[data-v-1f7c8f8d]{\n    max-height: 200px;\n    max-width: 50px;\n}\n.card-container[data-v-1f7c8f8d] {\n    z-index: 1;\n    display: flex;\n    flex-direction: row;\n    justify-content: center;\n    align-items: center;\n    /* background: #171d30; */\n    color: #263238;\n    /* box-shadow: rgba(3, 8, 20, 0.1) 0px 0.15rem 0.5rem, rgba(2, 8, 20, 0.1) 0px 0.075rem 0.175rem; */\n    height: 100%;\n    width: 100%;\n    border-radius: 4px;\n    transition: all 500ms;\n    overflow: hidden;\n    background-size: cover;\n    background-position: center;\n    background-repeat: no-repeat;\n    /* opacity: 0.5; */\n}\n\n/* .card-container:hover {\n    box-shadow: rgba(2, 8, 20, 0.1) 0px 0.35em 1.175em, rgba(2, 8, 20, 0.08) 0px 0.175em 0.5em;\n    border: 1px solid #171d30;\n} */\n", ""]);
 
 // exports
 
@@ -110,15 +128,59 @@ var render = function() {
   return _c(
     "div",
     {
-      staticClass: "fixed-container container-grid",
+      staticClass: "fixed-container container-grid mt-2",
       staticStyle: { padding: "20px" }
     },
-    _vm._l(_vm.courses, function(course, id) {
-      return _c("div", { key: id, staticClass: "card-container" }, [
-        _vm._v("\n         " + _vm._s(id) + "\n     ")
+    [
+      _c("v-simple-table", { attrs: { color: _vm.transparent } }, [
+        _c("thead", [
+          _c("tr", [
+            _c("th", { staticClass: "text-center" }),
+            _vm._v(" "),
+            _c("th", { staticClass: "text-left" }, [
+              _c("h1", [_vm._v("Name")])
+            ]),
+            _vm._v(" "),
+            _c("th", { staticClass: "text-left" }, [
+              _c("h1", [_vm._v("Name")])
+            ]),
+            _vm._v(" "),
+            _c("th", { staticClass: "text-left" }, [
+              _c("h1", [_vm._v("Name")])
+            ]),
+            _vm._v(" "),
+            _c("th", { staticClass: "text-left" }, [_c("h1", [_vm._v("Name")])])
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "tbody",
+          _vm._l(_vm.courses, function(item) {
+            return _c("tr", { key: item.id }, [
+              _c("th", { staticClass: "text-center" }),
+              _vm._v(" "),
+              _c("th", { staticClass: "text-left" }, [
+                _c("h1", [_vm._v("Name")])
+              ]),
+              _vm._v(" "),
+              _c("th", { staticClass: "text-left" }, [
+                _c("h1", [_vm._v("Name")])
+              ]),
+              _vm._v(" "),
+              _c("th", { staticClass: "text-left" }, [
+                _c("h1", [_vm._v("Name")])
+              ]),
+              _vm._v(" "),
+              _c("th", { staticClass: "text-left" }, [
+                _c("h1", [_vm._v("Name")])
+              ])
+            ])
+          }),
+          0
+        )
       ])
-    }),
-    0
+    ],
+    1
   )
 }
 var staticRenderFns = []

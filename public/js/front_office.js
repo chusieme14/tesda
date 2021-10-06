@@ -2134,6 +2134,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 
@@ -2164,6 +2167,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
 //
 //
 //
@@ -2358,7 +2362,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.main-bg[data-v-fe86af62]{\n    background: linear-gradient(to top right, #ccffff 25%, #ffffff 66%);\n    height: 100vh;\n    max-height: 100vh;\n}\n.footer[data-v-fe86af62]{\n    position: fixed;\n    bottom: 0;\n}\n", ""]);
+exports.push([module.i, "\n.main-bg[data-v-fe86af62]{\n    background: linear-gradient(to top right, #ccffff 25%, #ffffff 66%);\n    position: fixed;\n    height: 100vh;\n    width: 100vw;\n}\n.right-footer[data-v-fe86af62]{\n    position: absolute;\n    bottom: 0px;\n    right: 0px;\n}\n.left-footer[data-v-fe86af62]{\n    position: absolute;\n    bottom: 0px;\n    left: 0px;\n    z-index: 1;\n}\n", ""]);
 
 // exports
 
@@ -2377,7 +2381,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.company[data-v-6b978d0d]{\n    position:absolute; \n    margin-top: 55px;\n    min-width: 98vw;\n    max-width: 98vw;\n}\n", ""]);
+exports.push([module.i, "\n.company[data-v-6b978d0d]{\n    position:absolute; \n    min-width: 98vw;\n    max-width: 98vw;\n}\n", ""]);
 
 // exports
 
@@ -20861,12 +20865,11 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("v-app", [
+    _c("div", { staticClass: "main-bg" }),
+    _vm._v(" "),
     _c(
       "div",
-      { staticClass: "main-bg" },
       [
-        _c("side-bar", { attrs: { drawer: _vm.drawer } }),
-        _vm._v(" "),
         _c("navigation-bar"),
         _vm._v(" "),
         _c("main-content"),
@@ -20874,10 +20877,7 @@ var render = function() {
         _c("div", { staticClass: "footer d-flex" }, [
           _c(
             "div",
-            {
-              staticClass: "left-footer",
-              staticStyle: { position: "fixed", bottom: "0", left: "0" }
-            },
+            { staticClass: "left-footer" },
             [
               _c("v-img", {
                 attrs: {
@@ -20891,15 +20891,7 @@ var render = function() {
           _vm._v(" "),
           _c(
             "div",
-            {
-              staticClass: "right-footer",
-              staticStyle: {
-                position: "fixed",
-                bottom: "0",
-                right: "0",
-                "z-index": "-1"
-              }
-            },
+            { staticClass: "right-footer" },
             [
               _c("v-img", {
                 attrs: {
@@ -20968,13 +20960,20 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "v-toolbar",
-    { attrs: { prominent: "", extended: "", elevation: "1" } },
+    "v-system-bar",
+    {
+      staticClass: "elevation-0",
+      staticStyle: { "z-index": "6" },
+      attrs: { color: "#FFFFFF", app: "", height: "60" }
+    },
     [
       _c("v-app-bar-nav-icon"),
       _vm._v(" "),
-      _c("div", { staticClass: "mx-auto company" }, [
-        _vm._v("\n        navigation\n    ")
+      _c("div", { staticClass: "toggle-sidebar-wrapper" }, [
+        _c("img", {
+          staticStyle: { height: "55px", "margin-left": "10px" },
+          attrs: { src: "images/logo/tesda_logo.png", alt: "Company Logo" }
+        })
       ]),
       _vm._v(" "),
       _c("v-spacer"),
@@ -20989,8 +20988,10 @@ var render = function() {
               dense: "",
               "hide-details": "",
               "prepend-inner-icon": "mdi-magnify",
+              "single-line": "",
               outlined: "",
-              rounded: ""
+              rounded: "",
+              label: "Search courses"
             }
           })
         ],
@@ -82398,7 +82399,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/qonvex/projects/tesda/resources/js/frontoffice/front_office.js */"./resources/js/frontoffice/front_office.js");
+module.exports = __webpack_require__(/*! /home/romar/Projects/tesda/resources/js/frontoffice/front_office.js */"./resources/js/frontoffice/front_office.js");
 
 
 /***/ })
