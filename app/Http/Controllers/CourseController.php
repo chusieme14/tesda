@@ -41,7 +41,7 @@ class CourseController extends Controller
     public function removeCourse(Course $course){
         if($course->status == 2){
             return $course->delete();
-        } 
+        }
         $course->status = 2;
         $course->save();
     }

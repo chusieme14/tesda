@@ -40,7 +40,7 @@ export default {
     },
     components:{
         navigationBar,
-        mainContent
+        mainContent,
     }
 }
 </script>

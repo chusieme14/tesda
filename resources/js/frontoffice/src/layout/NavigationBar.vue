@@ -1,12 +1,12 @@
 <template>
-    <v-toolbar 
+    <v-toolbar
         prominent
         extended
         elevation="1"
     >
         <v-app-bar-nav-icon></v-app-bar-nav-icon>
         <div class="mx-auto company">
-            navigation
+            navigation 
         </div>
         <v-spacer></v-spacer>
         <div style="width:30%">
@@ -34,7 +34,7 @@ export default {
 
 <style scoped>
     .company{
-        position:absolute; 
+        position:absolute;
         margin-top: 55px;
         min-width: 98vw;
         max-width: 98vw;

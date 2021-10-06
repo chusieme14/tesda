@@ -14,6 +14,11 @@ const routes = [
 		component: () => import('@front/pages/about_us/index.vue'),
 		name:'waiting'
 	},
+    {
+        path: '/enroll',
+        component: () => import('@front/pages/courses/enroll.vue'),
+        name:'enroll'
+    }
 ]
 
 const router = new VueRouter({
