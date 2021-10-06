@@ -4,6 +4,7 @@ window.Vue = require('vue');
 import './src/assets/scss/main.scss'
 import router from './src/router/index'
 import vuetify from '@front/plugin/vuetify/index'
+import VueFormulate from '@braid/vue-formulate'
 // import VueToast from 'vue-toast-notification';
 // import VeeValidate from 'vee-validate';
 

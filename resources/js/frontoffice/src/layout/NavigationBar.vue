@@ -2,7 +2,7 @@
     <v-system-bar color="#FFFFFF" app height="60" class="elevation-0" style="z-index: 6;">
         <v-app-bar-nav-icon></v-app-bar-nav-icon>
         <div class="toggle-sidebar-wrapper">
-        <img src="images/logo/tesda_logo.png" 
+        <img src="images/logo/tesda_logo.png"
             style="height: 55px; margin-left: 10px"
             alt="Company Logo"
         />
@@ -35,7 +35,7 @@ export default {
 
 <style scoped>
     .company{
-        position:absolute; 
+        position:absolute;
         min-width: 98vw;
         max-width: 98vw;
     }

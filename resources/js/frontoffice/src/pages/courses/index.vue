@@ -36,7 +36,7 @@ export default {
     },
     methods: {
         getCourses(){
-            
+
             this.isfetching = true
             axios.get(`/front/courses/${1}`).then(({data})=>{
                 this.courses = data
@@ -80,7 +80,7 @@ export default {
         background-repeat: no-repeat;
         /* opacity: 0.5; */
     }
-    
+
     /* .card-container:hover {
         box-shadow: rgba(2, 8, 20, 0.1) 0px 0.35em 1.175em, rgba(2, 8, 20, 0.08) 0px 0.175em 0.5em;
         border: 1px solid #171d30;
