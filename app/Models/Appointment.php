@@ -41,4 +41,5 @@ class Appointment extends Model
     public function attachments(){
         return $this->hasMany(Attachment::class);
     }
+
 }

@@ -11,7 +11,7 @@
                                 solo
                                 dense
                                 v-model="courseDetails.course_code"
-                                
+
                             >
 
                             </v-text-field>
@@ -22,7 +22,7 @@
                                 solo
                                 dense
                                 v-model="courseDetails.name"
-                                
+
                             >
                             </v-text-field>
                         </v-flex>
@@ -32,7 +32,7 @@
                                 solo
                                 dense
                                 v-model="courseDetails.durations"
-                                
+
                             >
 
                             </v-text-field>
@@ -43,7 +43,7 @@
                                 solo
                                 dense
                                 v-model="courseDetails.description"
-                                
+
                             >
 
                             </v-textarea>
@@ -74,7 +74,7 @@
             <v-card-actions>
                 <v-spacer></v-spacer>
                 <p v-if="haserror" style="color:red; margin-top:17px;"> please fill up all field above </p>
-                                
+
                 <v-btn
                     class="ml-2"
                     color="primary"
@@ -113,10 +113,11 @@ export default {
 
             if (this.$refs.file_input.files && this.$refs.file_input.files[0]) {
                 var reader = new FileReader();
-                
+
                 reader.onload = function(x) {
                     vm.photo = x.target.result;
                     vm.courseDetails.thumbnail = x.target.result;
+
                 }
                 reader.readAsDataURL(this.$refs.file_input.files[0]); // convert to base64 string
                 this.courseDetails.logo_name = this.$refs.file_input.files[0].name
@@ -151,9 +152,9 @@ export default {
         noChanges(){
             if(this.course.appt_date == this.courseDetails.appt_date && this.course.department_id == this.courseDetails.department_id)
                 return true
-            else return false 
+            else return false
         }
-        
+
     },
     watch:{
         course:{
@@ -167,7 +168,7 @@ export default {
         courseDetails:{
             handler(){
                 if(!this.courseDetails.course_code && !this.courseDetails.name && !this.courseDetails.durations
-                    && !this.courseDetails.description && !this.courseDetails.thumbnail) 
+                    && !this.courseDetails.description && !this.courseDetails.thumbnail)
                         this.haserror = false
             },deep:true
         }
