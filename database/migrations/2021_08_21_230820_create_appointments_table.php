@@ -31,13 +31,13 @@ class CreateAppointmentsTable extends Migration
             $table->string('guardian_name');
             $table->string('guardian_address');
             $table->integer('civil_status');
-            $table->integer('educational_attainment');
+            $table->string('educational_attainment');
             $table->integer('employment_type');
             $table->integer('employment_status');
-            $table->integer('employer_name')->nullable();
+            $table->string('employer_name')->nullable();
             $table->boolean('agreement')->nullable();
             $table->string('photo');
-            $table->boolean('isregular');
+            $table->boolean('isregular')->default(true);
             $table->string('applicant_classification')->nullable();
             $table->string('course_qualification')->nullable();
             $table->string('scholar_type')->nullable();

@@ -1,6 +1,6 @@
 <template>
 <div class='section-1'>
-
+ <div class='form_section'>
   <div class="split left">
     <div class="inputs-1st-layer">
         <div class="first-row">
@@ -107,20 +107,24 @@
   </div>
   <div class="inputs-1st-layer">
         <div class="third-row">
-          <v-text-field
-            v-model="payload.employment_type"
-            :rules="[rules.required]"
-            label="Employment Type"
-            outlined
-          ></v-text-field>
+          <v-select
+          v-model="payload.employment_type"
+          :items="item5"
+          item-text="value"
+          item-value="id"
+          label="Employment Type"
+          outlined
+        ></v-select>
         </div>
         <div class="third-row">
-          <v-text-field
-            v-model="payload.employment_status"
-            :rules="[rules.required]"
-            label="Employment Status"
-            outlined
-          ></v-text-field>
+          <v-select
+          v-model="payload.employment_status"
+          :items="item4"
+          item-text="value"
+          item-value="id"
+          label="Employment Status"
+          outlined
+        ></v-select>
         </div>
         <div class="third-row">
           <v-text-field
@@ -131,10 +135,31 @@
           ></v-text-field>
         </div>
   </div>
+  <div class="inputs-1st-layer">
+        <div class="third-row">
+          <v-text-field
+            v-model="payload.employer_name"
+            :rules="[rules.required]"
+            label="Employer Name"
+            outlined
+          ></v-text-field>
+        </div>
+        <div class="third-row">
+            <v-flex style="margin-top:-20px" md3>
+                <v-file-input
+                    v-model="payload.photo"
+                    chips
+                    multiple
+                    label="File input"
+                    @change="uploadFile()"
+                ></v-file-input>
+          </v-flex>
+        </div>
   </div>
+</div>
 
 <!-- RIGHT SECTION -->
-  <div class="split right">
+<div class="split right">
     <div class="inputs-1st-layer">
         <div class="third-row">
           <v-text-field
@@ -186,7 +211,6 @@
         <div class="third-row">
           <v-text-field
             v-model="payload.agreement"
-            :rules="[rules.required]"
             label="Agreement"
             outlined
           ></v-text-field>
@@ -194,18 +218,21 @@
     </div>
     <div class="inputs-1st-layer">
         <div class="third-row">
-          <FormulateInput
-              v-model="payload.photo"
-              type="file"
-              placeholder="Photo"
-              validation="required"
-              style="border:1px solid;"
-          />
+          <v-select
+          v-model="payload.civil_status"
+          :items="item3"
+          item-text="value"
+          item-value="id"
+          label="Civil Status"
+          outlined
+        ></v-select>
         </div>
         <div class="third-row">
           <v-select
           v-model="payload.isregular"
           :items="item2"
+          item-text="value"
+          item-value="id"
           label="Are you regular?"
           outlined
         ></v-select>
@@ -238,13 +265,14 @@
         </div>
     </div>
   </div>
-  <div>
+  <div class="btn_submit">
       <v-btn
-        fab dark
+        class="submit"
         color="blue"
         @click="save()"> SUBMIT
       </v-btn>
   </div>
+ </div>
 </div>
 
 </template>
@@ -256,7 +284,10 @@ export default {
     data(){
         return{
             items:['Male', 'Female'],
-            item2:['Yes', 'No'],
+            item2:[{id:1, value:'Yes'}, {id:0, value:'No'}],
+            item3:[{id:1, value:'Single'}, {id:2, value:'Married'}, {id:3, value:'Widowed'}],
+            item4:[{id:1, value:'Employed'}, {id:2, value:'Unemployed'}],
+            item5:[{id:1, value:'Regular'}, {id:2, value:'Contractual'}, {id:3, value:'Freelance'}],
             payload:{
                 learn_number:'',
                 last_name:'',
@@ -279,7 +310,7 @@ export default {
                 mobile_number:'',
                 tel_phone_number:'',
                 agreement:'',
-                photo:'',
+                photo:[],
                 isregular:'',
                 applicant_classification:'',
                 course_qualification:'',
@@ -297,12 +328,44 @@ export default {
           }
         }
     },
+  computed:{
+        show_Image(){
+            if(this.image_path != null){
+                return this.image_path
+            }
+            return '/assets/blank.png'
+        }
+    },
   methods: {
     save(){
        axios.post('/api/enroll', this.payload).then(({data})=>{
                 this.departments = data
             })
     },
+    uploadFile() {
+           let vm = this;
+
+            if (this.$refs.file_input.files && this.$refs.file_input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function(x) {
+                    vm.payload.photo = x.target.result;
+                    vm.payload.photo = x.target.result;
+                }
+                reader.readAsDataURL(this.$refs.file_input.files[0]); // convert to base64 string
+                // this.payload.photo = this.$refs.file_input.files[0].name
+                this.isupload = true
+                console.log(this.payload.photo,"this.payload.photo")
+            }
+        },
+    triggerUpload() {
+        this.$refs.file_input.click()
+    },
+    checkCivil_status()
+    {
+
+    },
+
   }
 }
 
@@ -320,6 +383,21 @@ export default {
    display: flex;
    justify-content: space-between;
    width: 98%;
+ }
+ .form_section{
+     display: flex;
+     margin-left: 15%;
+ }
+ .btn_submit{
+     bottom: 1%;
+     right: 20%;
+     position: absolute;
+ }
+ .submit{
+     bottom: 1%;
+     right: 20%;
+     position: absolute;
+     font-size: 24px;
  }
   .inputs, .first-row, .second-row, .third-row, .fourth-row, .fifth-row {
     margin: 5px 5px;
