@@ -45,6 +45,9 @@
                 <th class="text-left">
                   Duration
                 </th>
+                <th class="text-left">
+                  Slots
+                </th>
                 <th class="text-center">
                   Action
                 </th>
@@ -56,7 +59,7 @@
                 :key="item.id"
               >
                 <td style="cursor:pointer;"
-                  @click="selectedThumbnail=item.thumbnail, isthumbnail=true"
+                  @click="selectedAppointment = item ,selectedThumbnail=item.thumbnail, isthumbnail=true"
                 >
                   <v-avatar>
                     <img
@@ -69,6 +72,7 @@
                 <td>{{ item.name }}</td>
                 <td>{{ item.description }}</td>
                 <td>{{ item.durations }}</td>
+                <td>{{ item.slots }}</td>
                 <td class="text-center">
                   <v-btn fab
                     v-if="$route.name=='incoming'"
@@ -117,10 +121,11 @@
         >
           <div class="main-dialog">
             <div class="dia-thumbnail">
-              <img :src="selectedThumbnail" alt="">
+              <img class="update-image" @click="triggerUpload()" :src="selectedThumbnail" alt="">
+              <input ref="file_input" accept=".pdf, .jpg, .png " style="display: none" type="file" @change="uploadFile()">
             </div>
             <div class="dia-btn">
-              <v-btn>save</v-btn>
+              <v-btn @click="updateThumbnail()">save</v-btn>
             </div>
           </div>
         </v-dialog>
@@ -146,7 +151,7 @@ export default {
         isadd:false,
         status:0,
         isthumbnail:false,
-        selectedThumbnail:''
+        selectedThumbnail:'',
       }
     },
     watch: {
@@ -165,6 +170,29 @@ export default {
         this.getCourses()
     }, 
     methods:{
+      updateThumbnail(){
+        this.selectedAppointment.thumbnail = this.selectedThumbnail
+        axios.post(`/admin/update/course-thumbnail`,this.selectedAppointment).then(({data})=>{
+          // this.getCourses()
+          this.isfetching = false
+          this.$toast.open({ message: `Thumbnail is successfully updated`, position: 'top-right', type: "success", duration: 5000})
+        })
+      },
+      uploadFile() {
+           let vm = this;
+
+            if (this.$refs.file_input.files && this.$refs.file_input.files[0]) {
+                var reader = new FileReader();
+                
+                reader.onload = function(x) {
+                    vm.selectedThumbnail = x.target.result;
+                }
+                reader.readAsDataURL(this.$refs.file_input.files[0]); // convert to base64 string
+            }
+        },
+        triggerUpload() {
+            this.$refs.file_input.click()
+        },
       create(value){
         this.isadd = false
         value.status = this.status
@@ -178,6 +206,7 @@ export default {
       getCourses(){
         this.isfetching = true
         axios.get(`/admin/ongoing/courses/${this.status}`).then(({data})=>{
+          console.log(data,"ahsdgasgdjhsgjd")
           this.courses = data
           this.isfetching = false
         })
@@ -233,5 +262,11 @@ export default {
 }
 .main-dialog{
   padding: 20px;
+}
+.update-image{
+  cursor: pointer;
+  object-fit: cover;
+  max-height: 400px;
+  max-width: 400px;
 }
 </style>

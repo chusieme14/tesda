@@ -145,6 +145,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -183,20 +188,53 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     this.getCourses();
   },
   methods: {
-    create: function create(value) {
+    updateThumbnail: function updateThumbnail() {
       var _this = this;
+
+      this.selectedAppointment.thumbnail = this.selectedThumbnail;
+      axios.post("/admin/update/course-thumbnail", this.selectedAppointment).then(function (_ref) {
+        var data = _ref.data;
+        // this.getCourses()
+        _this.isfetching = false;
+
+        _this.$toast.open({
+          message: "Thumbnail is successfully updated",
+          position: 'top-right',
+          type: "success",
+          duration: 5000
+        });
+      });
+    },
+    uploadFile: function uploadFile() {
+      var vm = this;
+
+      if (this.$refs.file_input.files && this.$refs.file_input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (x) {
+          vm.selectedThumbnail = x.target.result;
+        };
+
+        reader.readAsDataURL(this.$refs.file_input.files[0]); // convert to base64 string
+      }
+    },
+    triggerUpload: function triggerUpload() {
+      this.$refs.file_input.click();
+    },
+    create: function create(value) {
+      var _this2 = this;
 
       this.isadd = false;
       value.status = this.status;
       console.log(value);
-      axios.post("/admin/add/course", value).then(function (_ref) {
-        var data = _ref.data;
+      axios.post("/admin/add/course", value).then(function (_ref2) {
+        var data = _ref2.data;
 
-        _this.getCourses();
+        _this2.getCourses();
 
-        _this.isfetching = false;
+        _this2.isfetching = false;
 
-        _this.$toast.open({
+        _this2.$toast.open({
           message: "Course is successfully added",
           position: 'top-right',
           type: "success",
@@ -205,37 +243,38 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       });
     },
     getCourses: function getCourses() {
-      var _this2 = this;
+      var _this3 = this;
 
       this.isfetching = true;
-      axios.get("/admin/ongoing/courses/".concat(this.status)).then(function (_ref2) {
-        var data = _ref2.data;
-        _this2.courses = data;
-        _this2.isfetching = false;
+      axios.get("/admin/ongoing/courses/".concat(this.status)).then(function (_ref3) {
+        var data = _ref3.data;
+        console.log(data, "ahsdgasgdjhsgjd");
+        _this3.courses = data;
+        _this3.isfetching = false;
       });
     },
     getAuthuser: function getAuthuser() {
-      var _this3 = this;
+      var _this4 = this;
 
-      axios.get("/auth/user").then(function (_ref3) {
-        var data = _ref3.data;
-        _this3.user = data;
+      axios.get("/auth/user").then(function (_ref4) {
+        var data = _ref4.data;
+        _this4.user = data;
 
-        _this3.getCourses();
+        _this4.getCourses();
       });
     },
     accept: function accept(value) {
-      var _this4 = this;
+      var _this5 = this;
 
       this.isprocessing = true;
-      axios.put("/admin/active/course/".concat(value.id)).then(function (_ref4) {
-        var data = _ref4.data;
+      axios.put("/admin/active/course/".concat(value.id)).then(function (_ref5) {
+        var data = _ref5.data;
 
-        _this4.getCourses();
+        _this5.getCourses();
 
-        _this4.isprocessing = false;
+        _this5.isprocessing = false;
 
-        _this4.$toast.open({
+        _this5.$toast.open({
           message: "Appointment of ".concat(payload.lname + ' ' + payload.fname, " is successfully updated"),
           position: 'top-right',
           type: "success",
@@ -244,18 +283,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       });
     },
     update: function update(value) {
-      var _this5 = this;
+      var _this6 = this;
 
       this.isadd = false;
       this.isprocessing = true;
-      axios.put("/admin/update/course/".concat(value.id), _objectSpread({}, value)).then(function (_ref5) {
-        var data = _ref5.data;
+      axios.put("/admin/update/course/".concat(value.id), _objectSpread({}, value)).then(function (_ref6) {
+        var data = _ref6.data;
 
-        _this5.getCourses();
+        _this6.getCourses();
 
-        _this5.isprocessing = false;
+        _this6.isprocessing = false;
 
-        _this5.$toast.open({
+        _this6.$toast.open({
           message: "Course is successfully update",
           position: 'top-right',
           type: "success",
@@ -267,19 +306,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.isdelete = false;
     },
     confirm: function confirm() {
-      var _this6 = this;
+      var _this7 = this;
 
       this.isdelete = false;
       this.isprocessing = true;
-      axios["delete"]("/admin/remove/course/".concat(this.selectedAppointment.id)).then(function (_ref6) {
-        var data = _ref6.data;
+      axios["delete"]("/admin/remove/course/".concat(this.selectedAppointment.id)).then(function (_ref7) {
+        var data = _ref7.data;
 
-        _this6.getCourses();
+        _this7.getCourses();
 
-        _this6.isprocessing = false;
+        _this7.isprocessing = false;
 
-        _this6.$toast.open({
-          message: "Appointment of ".concat(_this6.selectedAppointment.lname + ' ' + _this6.selectedAppointment.fname, " is successfully removed"),
+        _this7.$toast.open({
+          message: "Appointment of ".concat(_this7.selectedAppointment.lname + ' ' + _this7.selectedAppointment.fname, " is successfully removed"),
           position: 'top-right',
           type: "success",
           duration: 5000
@@ -300,6 +339,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -695,6 +745,10 @@ var render = function() {
                               _vm._v("\n              Duration\n            ")
                             ]),
                             _vm._v(" "),
+                            _c("th", { staticClass: "text-left" }, [
+                              _vm._v("\n              Slots\n            ")
+                            ]),
+                            _vm._v(" "),
                             _c("th", { staticClass: "text-center" }, [
                               _vm._v("\n              Action\n            ")
                             ])
@@ -711,7 +765,9 @@ var render = function() {
                                   staticStyle: { cursor: "pointer" },
                                   on: {
                                     click: function($event) {
-                                      ;(_vm.selectedThumbnail = item.thumbnail),
+                                      ;(_vm.selectedAppointment = item),
+                                        (_vm.selectedThumbnail =
+                                          item.thumbnail),
                                         (_vm.isthumbnail = true)
                                     }
                                   }
@@ -736,6 +792,8 @@ var render = function() {
                               _c("td", [_vm._v(_vm._s(item.description))]),
                               _vm._v(" "),
                               _c("td", [_vm._v(_vm._s(item.durations))]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(item.slots))]),
                               _vm._v(" "),
                               _c(
                                 "td",
@@ -856,13 +914,44 @@ var render = function() {
         [
           _c("div", { staticClass: "main-dialog" }, [
             _c("div", { staticClass: "dia-thumbnail" }, [
-              _c("img", { attrs: { src: _vm.selectedThumbnail, alt: "" } })
+              _c("img", {
+                staticClass: "update-image",
+                attrs: { src: _vm.selectedThumbnail, alt: "" },
+                on: {
+                  click: function($event) {
+                    return _vm.triggerUpload()
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("input", {
+                ref: "file_input",
+                staticStyle: { display: "none" },
+                attrs: { accept: ".pdf, .jpg, .png ", type: "file" },
+                on: {
+                  change: function($event) {
+                    return _vm.uploadFile()
+                  }
+                }
+              })
             ]),
             _vm._v(" "),
             _c(
               "div",
               { staticClass: "dia-btn" },
-              [_c("v-btn", [_vm._v("save")])],
+              [
+                _c(
+                  "v-btn",
+                  {
+                    on: {
+                      click: function($event) {
+                        return _vm.updateThumbnail()
+                      }
+                    }
+                  },
+                  [_vm._v("save")]
+                )
+              ],
               1
             )
           ])
@@ -978,6 +1067,26 @@ var render = function() {
                                     )
                                   },
                                   expression: "courseDetails.durations"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-flex",
+                            { attrs: { xs12: "", md6: "" } },
+                            [
+                              _c("v-label", [_vm._v("Slot ")]),
+                              _vm._v(" "),
+                              _c("v-text-field", {
+                                attrs: { solo: "", dense: "" },
+                                model: {
+                                  value: _vm.courseDetails.slots,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.courseDetails, "slots", $$v)
+                                  },
+                                  expression: "courseDetails.slots"
                                 }
                               })
                             ],

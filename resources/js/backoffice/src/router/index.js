@@ -56,10 +56,10 @@ const router = new Router({
             name:'removed'
         },
         {
-            path:'/admin/userlist',
+            path:'/admin/user/list',
             component: () => import('@back/pages/user/index.vue'),
             meta:{ requiresAuth:true },
-            name:'userlist'
+            name:'list'
         },
         {
             path:'/admin/login',

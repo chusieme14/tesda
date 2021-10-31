@@ -192,33 +192,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     isupdate: {
@@ -236,67 +209,53 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    getAllDepartment: function getAllDepartment() {
+    getAllRole: function getAllRole() {
       var _this = this;
 
-      axios.get('/admin/department/all').then(function (_ref) {
+      axios.get('/admin/role/all').then(function (_ref) {
         var data = _ref.data;
-        _this.departments = data;
-      });
-    },
-    getAllRole: function getAllRole() {
-      var _this2 = this;
-
-      axios.get('/admin/role/all').then(function (_ref2) {
-        var data = _ref2.data;
-        _this2.roles = data;
+        _this.roles = data;
       });
     },
     store: function store() {
-      var _this3 = this;
-
-      this.$validator.validateAll().then(function (result) {
-        if (result) {
-          _this3.$emit('store', _this3.userDetails);
-        }
-      });
+      this.$emit('store', this.userDetails);
     },
     update: function update() {
       this.$emit('update', this.userDetails);
     },
     checkUsername: function checkUsername() {
-      var _this4 = this;
+      var _this2 = this;
 
       if (this.userDetails.username) {
         var username = this.userDetails.username;
         axios.post("/admin/check/username", {
           username: username
-        }).then(function (_ref3) {
-          var data = _ref3.data;
+        }).then(function (_ref2) {
+          var data = _ref2.data;
 
           if (data) {
-            if (_this4.isupdate && _this4.userDetails.id == data.id) {
-              _this4.hasusername = false;
-            } else _this4.hasusername = true;
-          } else _this4.hasusername = false;
+            if (_this2.isupdate && _this2.userDetails.id == data.id) {
+              _this2.hasusername = false;
+            } else _this2.hasusername = true;
+          } else _this2.hasusername = false;
         });
       }
     },
     checkEmail: function checkEmail() {
-      var _this5 = this;
+      var _this3 = this;
 
       if (this.userDetails.email) {
         var email = this.userDetails.email;
         axios.post("/admin/check/email", {
           email: email
-        }).then(function (_ref4) {
-          var data = _ref4.data;
+        }).then(function (_ref3) {
+          var data = _ref3.data;
 
           if (data) {
-            if (_this5.isupdate && _this5.userDetails.id == data.id) {
-              _this5.hasemail = false;
-            } else _this5.hasemail = true;
-          } else _this5.hasemail = false;
+            if (_this3.isupdate && _this3.userDetails.id == data.id) {
+              _this3.hasemail = false;
+            } else _this3.hasemail = true;
+          } else _this3.hasemail = false;
         });
       }
     }
@@ -311,10 +270,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   computed: {},
-  created: function created() {
-    this.getAllDepartment();
-    this.getAllRole();
-  }
+  created: function created() {}
 });
 
 /***/ }),
@@ -336,14 +292,6 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -463,7 +411,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     getallactiveuser: function getallactiveuser() {
       var _this = this;
 
-      axios.get('/admin/user/active').then(function (_ref) {
+      axios.get("/admin/user/active/".concat(1)).then(function (_ref) {
         var data = _ref.data;
         console.log(data);
         _this.users = data;
@@ -643,19 +591,7 @@ var render = function() {
                           _vm._v(" "),
                           _c("br"),
                           _vm._v(" "),
-                          _c("span", { staticStyle: { color: "red" } }, [
-                            _vm._v(_vm._s(_vm.errors.first("last name")))
-                          ]),
-                          _vm._v(" "),
                           _c("v-text-field", {
-                            directives: [
-                              {
-                                name: "validate",
-                                rawName: "v-validate",
-                                value: "required",
-                                expression: "'required'"
-                              }
-                            ],
                             attrs: { solo: "", dense: "", name: "last name" },
                             model: {
                               value: _vm.userDetails.lastname,
@@ -677,19 +613,7 @@ var render = function() {
                           _vm._v(" "),
                           _c("br"),
                           _vm._v(" "),
-                          _c("span", { staticStyle: { color: "red" } }, [
-                            _vm._v(_vm._s(_vm.errors.first("first name")))
-                          ]),
-                          _vm._v(" "),
                           _c("v-text-field", {
-                            directives: [
-                              {
-                                name: "validate",
-                                rawName: "v-validate",
-                                value: "required",
-                                expression: "'required'"
-                              }
-                            ],
                             attrs: { solo: "", dense: "", name: "first name" },
                             model: {
                               value: _vm.userDetails.firstname,
@@ -715,19 +639,9 @@ var render = function() {
                             ? _c("span", { staticStyle: { color: "red" } }, [
                                 _vm._v("Email is already taken")
                               ])
-                            : _c("span", { staticStyle: { color: "red" } }, [
-                                _vm._v(_vm._s(_vm.errors.first("first name")))
-                              ]),
+                            : _vm._e(),
                           _vm._v(" "),
                           _c("v-text-field", {
-                            directives: [
-                              {
-                                name: "validate",
-                                rawName: "v-validate",
-                                value: "required",
-                                expression: "'required'"
-                              }
-                            ],
                             attrs: { solo: "", dense: "", name: "email" },
                             on: { keyup: _vm.checkEmail },
                             model: {
@@ -736,45 +650,6 @@ var render = function() {
                                 _vm.$set(_vm.userDetails, "email", $$v)
                               },
                               expression: "userDetails.email"
-                            }
-                          })
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-flex",
-                        { attrs: { xs12: "", md6: "" } },
-                        [
-                          _c("v-label", [_vm._v("Username ")]),
-                          _vm._v(" "),
-                          _c("br"),
-                          _vm._v(" "),
-                          _vm.hasusername
-                            ? _c("span", { staticStyle: { color: "red" } }, [
-                                _vm._v("Username is already taken")
-                              ])
-                            : _c("span", { staticStyle: { color: "red" } }, [
-                                _vm._v(_vm._s(_vm.errors.first("username")))
-                              ]),
-                          _vm._v(" "),
-                          _c("v-text-field", {
-                            directives: [
-                              {
-                                name: "validate",
-                                rawName: "v-validate",
-                                value: "required",
-                                expression: "'required'"
-                              }
-                            ],
-                            attrs: { solo: "", dense: "", name: "username" },
-                            on: { keyup: _vm.checkUsername },
-                            model: {
-                              value: _vm.userDetails.username,
-                              callback: function($$v) {
-                                _vm.$set(_vm.userDetails, "username", $$v)
-                              },
-                              expression: "userDetails.username"
                             }
                           })
                         ],
@@ -811,19 +686,7 @@ var render = function() {
                               _vm._v(" "),
                               _c("br"),
                               _vm._v(" "),
-                              _c("span", { staticStyle: { color: "red" } }, [
-                                _vm._v(_vm._s(_vm.errors.first("password")))
-                              ]),
-                              _vm._v(" "),
                               _c("v-text-field", {
-                                directives: [
-                                  {
-                                    name: "validate",
-                                    rawName: "v-validate",
-                                    value: "required",
-                                    expression: "'required'"
-                                  }
-                                ],
                                 attrs: {
                                   solo: "",
                                   dense: "",
@@ -849,19 +712,7 @@ var render = function() {
                           _vm._v(" "),
                           _c("br"),
                           _vm._v(" "),
-                          _c("span", { staticStyle: { color: "red" } }, [
-                            _vm._v(_vm._s(_vm.errors.first("role")))
-                          ]),
-                          _vm._v(" "),
                           _c("v-autocomplete", {
-                            directives: [
-                              {
-                                name: "validate",
-                                rawName: "v-validate",
-                                value: "required",
-                                expression: "'required'"
-                              }
-                            ],
                             attrs: {
                               items: _vm.roles,
                               "item-text": "name",
@@ -892,19 +743,7 @@ var render = function() {
                           _vm._v(" "),
                           _c("br"),
                           _vm._v(" "),
-                          _c("span", { staticStyle: { color: "red" } }, [
-                            _vm._v(_vm._s(_vm.errors.first("department")))
-                          ]),
-                          _vm._v(" "),
                           _c("v-autocomplete", {
-                            directives: [
-                              {
-                                name: "validate",
-                                rawName: "v-validate",
-                                value: "required",
-                                expression: "'required'"
-                              }
-                            ],
                             attrs: {
                               items: _vm.departments,
                               "item-text": "short_name",
@@ -1002,7 +841,7 @@ var render = function() {
       _c(
         "v-navigation-drawer",
         {
-          attrs: { absolute: "", temporary: "", right: "", width: "700" },
+          attrs: { absolute: "", temporary: "", right: "", width: "600" },
           model: {
             value: _vm.drawer,
             callback: function($$v) {
@@ -1075,25 +914,13 @@ var render = function() {
                             _vm._v(" "),
                             _c("th", { staticClass: "text-left" }, [
                               _vm._v(
-                                "\n                    Department\n                    "
+                                "\n                    Position\n                    "
                               )
                             ]),
                             _vm._v(" "),
                             _c("th", { staticClass: "text-left" }, [
                               _vm._v(
                                 "\n                    Email\n                    "
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("th", { staticClass: "text-left" }, [
-                              _vm._v(
-                                "\n                    Username\n                    "
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("th", { staticClass: "text-left" }, [
-                              _vm._v(
-                                "\n                    Role\n                    "
                               )
                             ]),
                             _vm._v(" "),
@@ -1109,19 +936,13 @@ var render = function() {
                           "tbody",
                           _vm._l(_vm.users, function(user) {
                             return _c("tr", { key: user.id }, [
-                              _c("td", [_vm._v(_vm._s(user.lastname))]),
+                              _c("td", [_vm._v(_vm._s(user.last_name))]),
                               _vm._v(" "),
-                              _c("td", [_vm._v(_vm._s(user.firstname))]),
+                              _c("td", [_vm._v(_vm._s(user.first_name))]),
                               _vm._v(" "),
-                              _c("td", [
-                                _vm._v(_vm._s(user.department.short_name))
-                              ]),
+                              _c("td", [_vm._v(_vm._s(user.position))]),
                               _vm._v(" "),
                               _c("td", [_vm._v(_vm._s(user.email))]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v(_vm._s(user.username))]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v(_vm._s(user.role.name))]),
                               _vm._v(" "),
                               _c(
                                 "td",

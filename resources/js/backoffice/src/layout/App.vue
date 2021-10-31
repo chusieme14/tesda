@@ -8,16 +8,15 @@
                 permanent
             >
                 <v-list>
-                    <v-list-item 
-                        v-if="isSuperAdmin"
+                    <v-list-item
                         link
-                        :class="getCurrentUrl == 'userlist' ? 'active' : ''"
+                        :class="getCurrentUrl == 'list' ? 'active' : ''"
                     >
                         <v-list-item-icon>
                             <v-icon>mdi-account-box</v-icon>
                         </v-list-item-icon>
                          
-                        <router-link class="mt-2" tag="v-list-item-content" :to="{ name: 'userlist' }">
+                        <router-link class="mt-2" tag="v-list-item-content" :to="{ name: 'list' }">
                             <p>Users</p>
                         </router-link>
                     </v-list-item>

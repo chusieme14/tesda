@@ -14,6 +14,7 @@ class Course extends Model
         'durations',
         'description',
         'thumbnail',
+        'slots',
         'status'
     ];
 }

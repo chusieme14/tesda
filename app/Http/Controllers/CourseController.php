@@ -17,6 +17,7 @@ class CourseController extends Controller
             'name' => $request->name,
             'status' => $request->status,
             'durations' => $request->durations,
+            'slots' => $request->slots,
             'description' => $request->description,
         ]);
         if($request->thumbnail){
@@ -51,6 +52,7 @@ class CourseController extends Controller
             'name' => $request->name,
             'status' => $request->status,
             'durations' => $request->durations,
+            'slots' => $request->slots,
             'description' => $request->description,
         ]);
         return $course;
@@ -58,5 +60,9 @@ class CourseController extends Controller
     public function activeCourse(Course $course){
         $course->status = 1;
         $course->save();
+    }
+    public function updateThumbnail(Request $request){
+        $course = Course::where('id',$request->id)->first();
+        $this->uploadPhoto($request->thumbnail,$course);
     }
 }

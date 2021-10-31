@@ -37,6 +37,17 @@
 
                             </v-text-field>
                         </v-flex>
+                        <v-flex xs12 md6>
+                            <v-label>Slot </v-label>
+                            <v-text-field
+                                solo
+                                dense
+                                v-model="courseDetails.slots"
+                                
+                            >
+
+                            </v-text-field>
+                        </v-flex>
                         <v-flex md12>
                             <v-label> Description</v-label>
                             <v-textarea

@@ -5,7 +5,7 @@
             absolute
             temporary
             right
-            width="700"
+            width="600"
         >
             <create-form 
                 @store = "store"
@@ -41,16 +41,10 @@
                         Firstname
                         </th>
                         <th class="text-left">
-                        Department
+                        Position
                         </th>
                         <th class="text-left">
                         Email
-                        </th>
-                        <th class="text-left">
-                        Username
-                        </th>
-                        <th class="text-left">
-                        Role
                         </th>
                         <th class="text-center">
                         Action
@@ -62,12 +56,10 @@
                         v-for="user in users"
                         :key="user.id"
                     >
-                        <td>{{ user.lastname}}</td>
-                        <td>{{ user.firstname}}</td>
-                        <td>{{ user.department.short_name}}</td>
+                        <td>{{ user.last_name}}</td>
+                        <td>{{ user.first_name}}</td>
+                        <td>{{ user.position}}</td>
                         <td>{{ user.email }}</td>
-                        <td>{{ user.username }}</td>
-                        <td>{{ user.role.name}}</td>
                         <td class="text-center">
                         <v-btn fab dark
                             x-small color="success"
@@ -124,7 +116,7 @@ export default {
     },
     methods:{
         getallactiveuser(){
-            axios.get('/admin/user/active').then(({data})=>{
+            axios.get(`/admin/user/active/${1}`).then(({data})=>{
                 console.log(data)
                 this.users = data
             })

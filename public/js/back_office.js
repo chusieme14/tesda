@@ -2191,7 +2191,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -20866,36 +20865,33 @@ var render = function() {
                   _c(
                     "v-list",
                     [
-                      _vm.isSuperAdmin
-                        ? _c(
-                            "v-list-item",
-                            {
-                              class:
-                                _vm.getCurrentUrl == "userlist" ? "active" : "",
-                              attrs: { link: "" }
-                            },
-                            [
-                              _c(
-                                "v-list-item-icon",
-                                [_c("v-icon", [_vm._v("mdi-account-box")])],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "router-link",
-                                {
-                                  staticClass: "mt-2",
-                                  attrs: {
-                                    tag: "v-list-item-content",
-                                    to: { name: "userlist" }
-                                  }
-                                },
-                                [_c("p", [_vm._v("Users")])]
-                              )
-                            ],
+                      _c(
+                        "v-list-item",
+                        {
+                          class: _vm.getCurrentUrl == "list" ? "active" : "",
+                          attrs: { link: "" }
+                        },
+                        [
+                          _c(
+                            "v-list-item-icon",
+                            [_c("v-icon", [_vm._v("mdi-account-box")])],
                             1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "router-link",
+                            {
+                              staticClass: "mt-2",
+                              attrs: {
+                                tag: "v-list-item-content",
+                                to: { name: "list" }
+                              }
+                            },
+                            [_c("p", [_vm._v("Users")])]
                           )
-                        : _vm._e(),
+                        ],
+                        1
+                      ),
                       _vm._v(" "),
                       _c(
                         "v-list-group",
@@ -82344,14 +82340,14 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]({
     },
     name: 'removed'
   }, {
-    path: '/admin/userlist',
+    path: '/admin/user/list',
     component: function component() {
       return __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(null, /*! @back/pages/user/index.vue */ "./resources/js/backoffice/src/pages/user/index.vue"));
     },
     meta: {
       requiresAuth: true
     },
-    name: 'userlist'
+    name: 'list'
   }, {
     path: '/admin/login',
     component: function component() {
