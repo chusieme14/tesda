@@ -260,6 +260,34 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var VueFormulate = __webpack_require__(/*! @braid/vue-formulate */ "./node_modules/@braid/vue-formulate/dist/formulate.esm.js");
 
 Vue.use(VueFormulate["default"]);
@@ -267,7 +295,40 @@ Vue.use(VueFormulate["default"]);
   data: function data() {
     return {
       items: ['Male', 'Female'],
-      item2: ['Yes', 'No'],
+      item2: [{
+        id: 1,
+        value: 'Yes'
+      }, {
+        id: 0,
+        value: 'No'
+      }],
+      item3: [{
+        id: 1,
+        value: 'Single'
+      }, {
+        id: 2,
+        value: 'Married'
+      }, {
+        id: 3,
+        value: 'Widowed'
+      }],
+      item4: [{
+        id: 1,
+        value: 'Employed'
+      }, {
+        id: 2,
+        value: 'Unemployed'
+      }],
+      item5: [{
+        id: 1,
+        value: 'Regular'
+      }, {
+        id: 2,
+        value: 'Contractual'
+      }, {
+        id: 3,
+        value: 'Freelance'
+      }],
       payload: {
         learn_number: '',
         last_name: '',
@@ -290,7 +351,7 @@ Vue.use(VueFormulate["default"]);
         mobile_number: '',
         tel_phone_number: '',
         agreement: '',
-        photo: '',
+        photo: [],
         isregular: '',
         applicant_classification: '',
         course_qualification: '',
@@ -312,6 +373,15 @@ Vue.use(VueFormulate["default"]);
       }
     };
   },
+  computed: {
+    show_Image: function show_Image() {
+      if (this.image_path != null) {
+        return this.image_path;
+      }
+
+      return '/assets/blank.png';
+    }
+  },
   methods: {
     save: function save() {
       var _this = this;
@@ -320,7 +390,29 @@ Vue.use(VueFormulate["default"]);
         var data = _ref.data;
         _this.departments = data;
       });
-    }
+    },
+    uploadFile: function uploadFile() {
+      var vm = this;
+
+      if (this.$refs.file_input.files && this.$refs.file_input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (x) {
+          vm.payload.photo = x.target.result;
+          vm.payload.photo = x.target.result;
+        };
+
+        reader.readAsDataURL(this.$refs.file_input.files[0]); // convert to base64 string
+        // this.payload.photo = this.$refs.file_input.files[0].name
+
+        this.isupload = true;
+        console.log(this.payload.photo, "this.payload.photo");
+      }
+    },
+    triggerUpload: function triggerUpload() {
+      this.$refs.file_input.click();
+    },
+    checkCivil_status: function checkCivil_status() {}
   }
 });
 
@@ -338,7 +430,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../../node_module
 
 
 // module
-exports.push([module.i, "\n.section-1[data-v-a5e5910a]{\n   margin-left: 1%;\n   margin-right: 1%;\n   background-color:white;\n   padding: 2em;\n   border: 1px solid #a8a8a8;\n   border-radius: .5em;\n   box-sizing: border-box;\n   display: flex;\n   justify-content: space-between;\n   width: 98%;\n}\n.inputs[data-v-a5e5910a], .first-row[data-v-a5e5910a], .second-row[data-v-a5e5910a], .third-row[data-v-a5e5910a], .fourth-row[data-v-a5e5910a], .fifth-row[data-v-a5e5910a] {\n    margin: 5px 5px;\n}\n.first-row[data-v-a5e5910a], .second-row[data-v-a5e5910a], .third-row[data-v-a5e5910a] {\n    margin: 15px 15px;\n}\n.controls[data-v-a5e5910a] {\n  display: flex;\n}\n.radio[data-v-a5e5910a] {\n  flex: 1 0 auto;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\n@media (min-width: 650px) {\n.inputs-1st-layer[data-v-a5e5910a] {\n    display: flex;\n}\n}\n@media (min-width: 720px) {\n.inputs-1st-layer[data-v-a5e5910a], .first-row[data-v-a5e5910a] {\n    display: block;\n}\n}\n@media (min-width: 850px) {\n.inputs-1st-layer[data-v-a5e5910a], .first-row[data-v-a5e5910a] {\n    display: flex;\n}\n.inputs-1st-layer .formulate-input[data-v-a5e5910a] {\n    margin-right: 1.5em;\n}\n}\n.inputs-1st-layer .formulate-input[data-v-a5e5910a] {\n  margin-right: 2em;\n  margin-bottom: 0;\n}\nstrong[data-v-a5e5910a] {\n  display: block;\n  margin: 1em 0;\n}\ncode[data-v-a5e5910a] {\n  margin-top: 2em;\n}\n.split[data-v-a5e5910a] {\n  height: 100%;\n  width: 50%;\n  z-index: 1;\n  overflow-x: hidden;\n  padding-top: 20px;\n}\n.left[data-v-a5e5910a] {\n  left: 0;\n}\n.right[data-v-a5e5910a] {\n  right: 0;\n}\n", ""]);
+exports.push([module.i, "\n.section-1[data-v-a5e5910a]{\n   margin-left: 1%;\n   margin-right: 1%;\n   background-color:white;\n   padding: 2em;\n   border: 1px solid #a8a8a8;\n   border-radius: .5em;\n   box-sizing: border-box;\n   display: flex;\n   justify-content: space-between;\n   width: 98%;\n}\n.form_section[data-v-a5e5910a]{\n     display: flex;\n     margin-left: 15%;\n}\n.btn_submit[data-v-a5e5910a]{\n     bottom: 1%;\n     right: 20%;\n     position: absolute;\n}\n.submit[data-v-a5e5910a]{\n     bottom: 1%;\n     right: 20%;\n     position: absolute;\n     font-size: 24px;\n}\n.inputs[data-v-a5e5910a], .first-row[data-v-a5e5910a], .second-row[data-v-a5e5910a], .third-row[data-v-a5e5910a], .fourth-row[data-v-a5e5910a], .fifth-row[data-v-a5e5910a] {\n    margin: 5px 5px;\n}\n.first-row[data-v-a5e5910a], .second-row[data-v-a5e5910a], .third-row[data-v-a5e5910a] {\n    margin: 15px 15px;\n}\n.controls[data-v-a5e5910a] {\n  display: flex;\n}\n.radio[data-v-a5e5910a] {\n  flex: 1 0 auto;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\n@media (min-width: 650px) {\n.inputs-1st-layer[data-v-a5e5910a] {\n    display: flex;\n}\n}\n@media (min-width: 720px) {\n.inputs-1st-layer[data-v-a5e5910a], .first-row[data-v-a5e5910a] {\n    display: block;\n}\n}\n@media (min-width: 850px) {\n.inputs-1st-layer[data-v-a5e5910a], .first-row[data-v-a5e5910a] {\n    display: flex;\n}\n.inputs-1st-layer .formulate-input[data-v-a5e5910a] {\n    margin-right: 1.5em;\n}\n}\n.inputs-1st-layer .formulate-input[data-v-a5e5910a] {\n  margin-right: 2em;\n  margin-bottom: 0;\n}\nstrong[data-v-a5e5910a] {\n  display: block;\n  margin: 1em 0;\n}\ncode[data-v-a5e5910a] {\n  margin-top: 2em;\n}\n.split[data-v-a5e5910a] {\n  height: 100%;\n  width: 50%;\n  z-index: 1;\n  overflow-x: hidden;\n  padding-top: 20px;\n}\n.left[data-v-a5e5910a] {\n  left: 0;\n}\n.right[data-v-a5e5910a] {\n  right: 0;\n}\n", ""]);
 
 // exports
 
@@ -391,618 +483,679 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "section-1" }, [
-    _c("div", { staticClass: "split left" }, [
-      _c("div", { staticClass: "inputs-1st-layer" }, [
-        _c(
-          "div",
-          { staticClass: "first-row" },
-          [
-            _c("v-text-field", {
-              attrs: {
-                rules: [_vm.rules.required, _vm.rules.counter],
-                label: "Last Name",
-                counter: "",
-                maxlength: "20",
-                outlined: ""
-              },
-              model: {
-                value: _vm.payload.last_name,
-                callback: function($$v) {
-                  _vm.$set(_vm.payload, "last_name", $$v)
-                },
-                expression: "payload.last_name"
-              }
-            })
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "first-row" },
-          [
-            _c("v-text-field", {
-              attrs: {
-                rules: [_vm.rules.required, _vm.rules.counter],
-                label: "First Name",
-                counter: "",
-                maxlength: "20",
-                outlined: ""
-              },
-              model: {
-                value: _vm.payload.first_name,
-                callback: function($$v) {
-                  _vm.$set(_vm.payload, "first_name", $$v)
-                },
-                expression: "payload.first_name"
-              }
-            })
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "first-row" },
-          [
-            _c("v-text-field", {
-              attrs: {
-                rules: [_vm.rules.required, _vm.rules.counter],
-                label: "Middle Name",
-                counter: "",
-                maxlength: "20",
-                outlined: ""
-              },
-              model: {
-                value: _vm.payload.middle_name,
-                callback: function($$v) {
-                  _vm.$set(_vm.payload, "middle_name", $$v)
-                },
-                expression: "payload.middle_name"
-              }
-            })
-          ],
-          1
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "inputs-1st-layer" }, [
-        _c(
-          "div",
-          { staticClass: "second-row" },
-          [
-            _c("v-select", {
-              attrs: { items: _vm.items, label: "Gender", outlined: "" },
-              model: {
-                value: _vm.payload.gender,
-                callback: function($$v) {
-                  _vm.$set(_vm.payload, "gender", $$v)
-                },
-                expression: "payload.gender"
-              }
-            })
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "second-row" },
-          [
-            _c(
-              "v-menu",
-              {
+    _c("div", { staticClass: "form_section" }, [
+      _c("div", { staticClass: "split left" }, [
+        _c("div", { staticClass: "inputs-1st-layer" }, [
+          _c(
+            "div",
+            { staticClass: "first-row" },
+            [
+              _c("v-text-field", {
                 attrs: {
-                  "close-on-content-click": false,
-                  transition: "scale-transition",
-                  "offset-y": "",
-                  "min-width": "auto"
+                  rules: [_vm.rules.required, _vm.rules.counter],
+                  label: "Last Name",
+                  counter: "",
+                  maxlength: "20",
+                  outlined: ""
                 },
-                scopedSlots: _vm._u([
-                  {
-                    key: "activator",
-                    fn: function(ref) {
-                      var on = ref.on
-                      var attrs = ref.attrs
-                      return [
-                        _c(
-                          "v-text-field",
-                          _vm._g(
-                            _vm._b(
-                              {
-                                attrs: {
-                                  label: "Birthday date",
-                                  "prepend-icon": "mdi-calendar",
-                                  readonly: ""
-                                },
-                                model: {
-                                  value: _vm.payload.birth_date,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.payload, "birth_date", $$v)
-                                  },
-                                  expression: "payload.birth_date"
-                                }
-                              },
-                              "v-text-field",
-                              attrs,
-                              false
-                            ),
-                            on
-                          )
-                        )
-                      ]
-                    }
-                  }
-                ]),
                 model: {
-                  value: _vm.menu,
+                  value: _vm.payload.last_name,
                   callback: function($$v) {
-                    _vm.menu = $$v
+                    _vm.$set(_vm.payload, "last_name", $$v)
                   },
-                  expression: "menu"
+                  expression: "payload.last_name"
                 }
-              },
-              [
-                _vm._v(" "),
-                _c("v-date-picker", {
-                  attrs: {
-                    max: new Date(
-                      Date.now() - new Date().getTimezoneOffset() * 60000
-                    )
-                      .toISOString()
-                      .substr(0, 10),
-                    min: "1950-01-01"
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "first-row" },
+            [
+              _c("v-text-field", {
+                attrs: {
+                  rules: [_vm.rules.required, _vm.rules.counter],
+                  label: "First Name",
+                  counter: "",
+                  maxlength: "20",
+                  outlined: ""
+                },
+                model: {
+                  value: _vm.payload.first_name,
+                  callback: function($$v) {
+                    _vm.$set(_vm.payload, "first_name", $$v)
                   },
+                  expression: "payload.first_name"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "first-row" },
+            [
+              _c("v-text-field", {
+                attrs: {
+                  rules: [_vm.rules.required, _vm.rules.counter],
+                  label: "Middle Name",
+                  counter: "",
+                  maxlength: "20",
+                  outlined: ""
+                },
+                model: {
+                  value: _vm.payload.middle_name,
+                  callback: function($$v) {
+                    _vm.$set(_vm.payload, "middle_name", $$v)
+                  },
+                  expression: "payload.middle_name"
+                }
+              })
+            ],
+            1
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "inputs-1st-layer" }, [
+          _c(
+            "div",
+            { staticClass: "second-row" },
+            [
+              _c("v-select", {
+                attrs: { items: _vm.items, label: "Gender", outlined: "" },
+                model: {
+                  value: _vm.payload.gender,
+                  callback: function($$v) {
+                    _vm.$set(_vm.payload, "gender", $$v)
+                  },
+                  expression: "payload.gender"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "second-row" },
+            [
+              _c(
+                "v-menu",
+                {
+                  attrs: {
+                    "close-on-content-click": false,
+                    transition: "scale-transition",
+                    "offset-y": "",
+                    "min-width": "auto"
+                  },
+                  scopedSlots: _vm._u([
+                    {
+                      key: "activator",
+                      fn: function(ref) {
+                        var on = ref.on
+                        var attrs = ref.attrs
+                        return [
+                          _c(
+                            "v-text-field",
+                            _vm._g(
+                              _vm._b(
+                                {
+                                  attrs: {
+                                    label: "Birthday date",
+                                    "prepend-icon": "mdi-calendar",
+                                    readonly: ""
+                                  },
+                                  model: {
+                                    value: _vm.payload.birth_date,
+                                    callback: function($$v) {
+                                      _vm.$set(_vm.payload, "birth_date", $$v)
+                                    },
+                                    expression: "payload.birth_date"
+                                  }
+                                },
+                                "v-text-field",
+                                attrs,
+                                false
+                              ),
+                              on
+                            )
+                          )
+                        ]
+                      }
+                    }
+                  ]),
                   model: {
-                    value: _vm.payload.birth_date,
+                    value: _vm.menu,
                     callback: function($$v) {
-                      _vm.$set(_vm.payload, "birth_date", $$v)
+                      _vm.menu = $$v
                     },
-                    expression: "payload.birth_date"
+                    expression: "menu"
                   }
-                })
-              ],
-              1
-            )
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "second-row" },
-          [
-            _c("v-text-field", {
-              attrs: {
-                rules: [_vm.rules.required],
-                label: "Age",
-                outlined: ""
-              },
-              model: {
-                value: _vm.payload.age,
-                callback: function($$v) {
-                  _vm.$set(_vm.payload, "age", $$v)
                 },
-                expression: "payload.age"
-              }
-            })
-          ],
-          1
-        )
+                [
+                  _vm._v(" "),
+                  _c("v-date-picker", {
+                    attrs: {
+                      max: new Date(
+                        Date.now() - new Date().getTimezoneOffset() * 60000
+                      )
+                        .toISOString()
+                        .substr(0, 10),
+                      min: "1950-01-01"
+                    },
+                    model: {
+                      value: _vm.payload.birth_date,
+                      callback: function($$v) {
+                        _vm.$set(_vm.payload, "birth_date", $$v)
+                      },
+                      expression: "payload.birth_date"
+                    }
+                  })
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "second-row" },
+            [
+              _c("v-text-field", {
+                attrs: {
+                  rules: [_vm.rules.required],
+                  label: "Age",
+                  outlined: ""
+                },
+                model: {
+                  value: _vm.payload.age,
+                  callback: function($$v) {
+                    _vm.$set(_vm.payload, "age", $$v)
+                  },
+                  expression: "payload.age"
+                }
+              })
+            ],
+            1
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "inputs-1st-layer" }, [
+          _c(
+            "div",
+            { staticClass: "third-row" },
+            [
+              _c("v-text-field", {
+                attrs: {
+                  rules: [_vm.rules.required],
+                  label: "Nationality",
+                  counter: "",
+                  maxlength: "20",
+                  outlined: ""
+                },
+                model: {
+                  value: _vm.payload.nationality,
+                  callback: function($$v) {
+                    _vm.$set(_vm.payload, "nationality", $$v)
+                  },
+                  expression: "payload.nationality"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "third-row" },
+            [
+              _c("v-text-field", {
+                attrs: {
+                  rules: [_vm.rules.required],
+                  label: "Birthplace",
+                  outlined: ""
+                },
+                model: {
+                  value: _vm.payload.birthplace,
+                  callback: function($$v) {
+                    _vm.$set(_vm.payload, "birthplace", $$v)
+                  },
+                  expression: "payload.birthplace"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "third-row" },
+            [
+              _c("v-text-field", {
+                attrs: {
+                  rules: [_vm.rules.required],
+                  label: "Educational Attainment",
+                  outlined: ""
+                },
+                model: {
+                  value: _vm.payload.educational_attainment,
+                  callback: function($$v) {
+                    _vm.$set(_vm.payload, "educational_attainment", $$v)
+                  },
+                  expression: "payload.educational_attainment"
+                }
+              })
+            ],
+            1
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "inputs-1st-layer" }, [
+          _c(
+            "div",
+            { staticClass: "third-row" },
+            [
+              _c("v-select", {
+                attrs: {
+                  items: _vm.item5,
+                  "item-text": "value",
+                  "item-value": "id",
+                  label: "Employment Type",
+                  outlined: ""
+                },
+                model: {
+                  value: _vm.payload.employment_type,
+                  callback: function($$v) {
+                    _vm.$set(_vm.payload, "employment_type", $$v)
+                  },
+                  expression: "payload.employment_type"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "third-row" },
+            [
+              _c("v-select", {
+                attrs: {
+                  items: _vm.item4,
+                  "item-text": "value",
+                  "item-value": "id",
+                  label: "Employment Status",
+                  outlined: ""
+                },
+                model: {
+                  value: _vm.payload.employment_status,
+                  callback: function($$v) {
+                    _vm.$set(_vm.payload, "employment_status", $$v)
+                  },
+                  expression: "payload.employment_status"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "third-row" },
+            [
+              _c("v-text-field", {
+                attrs: {
+                  rules: [_vm.rules.required],
+                  label: "Home Address",
+                  outlined: ""
+                },
+                model: {
+                  value: _vm.payload.home_address,
+                  callback: function($$v) {
+                    _vm.$set(_vm.payload, "home_address", $$v)
+                  },
+                  expression: "payload.home_address"
+                }
+              })
+            ],
+            1
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "inputs-1st-layer" }, [
+          _c(
+            "div",
+            { staticClass: "third-row" },
+            [
+              _c("v-text-field", {
+                attrs: {
+                  rules: [_vm.rules.required],
+                  label: "Employer Name",
+                  outlined: ""
+                },
+                model: {
+                  value: _vm.payload.employer_name,
+                  callback: function($$v) {
+                    _vm.$set(_vm.payload, "employer_name", $$v)
+                  },
+                  expression: "payload.employer_name"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "third-row" },
+            [
+              _c(
+                "v-flex",
+                { staticStyle: { "margin-top": "-20px" }, attrs: { md3: "" } },
+                [
+                  _c("v-file-input", {
+                    attrs: { chips: "", multiple: "", label: "File input" },
+                    on: {
+                      change: function($event) {
+                        return _vm.uploadFile()
+                      }
+                    },
+                    model: {
+                      value: _vm.payload.photo,
+                      callback: function($$v) {
+                        _vm.$set(_vm.payload, "photo", $$v)
+                      },
+                      expression: "payload.photo"
+                    }
+                  })
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "inputs-1st-layer" }, [
-        _c(
-          "div",
-          { staticClass: "third-row" },
-          [
-            _c("v-text-field", {
-              attrs: {
-                rules: [_vm.rules.required],
-                label: "Nationality",
-                counter: "",
-                maxlength: "20",
-                outlined: ""
-              },
-              model: {
-                value: _vm.payload.nationality,
-                callback: function($$v) {
-                  _vm.$set(_vm.payload, "nationality", $$v)
+      _c("div", { staticClass: "split right" }, [
+        _c("div", { staticClass: "inputs-1st-layer" }, [
+          _c(
+            "div",
+            { staticClass: "third-row" },
+            [
+              _c("v-text-field", {
+                attrs: {
+                  rules: [_vm.rules.required, _vm.rules.counter],
+                  label: "Guardian Name",
+                  counter: "",
+                  maxlength: "20",
+                  outlined: ""
                 },
-                expression: "payload.nationality"
-              }
-            })
-          ],
-          1
-        ),
+                model: {
+                  value: _vm.payload.guardian_name,
+                  callback: function($$v) {
+                    _vm.$set(_vm.payload, "guardian_name", $$v)
+                  },
+                  expression: "payload.guardian_name"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "third-row" },
+            [
+              _c("v-text-field", {
+                attrs: {
+                  rules: [_vm.rules.required, _vm.rules.counter],
+                  label: "Guardian Address",
+                  counter: "",
+                  maxlength: "20",
+                  outlined: ""
+                },
+                model: {
+                  value: _vm.payload.guardian_address,
+                  callback: function($$v) {
+                    _vm.$set(_vm.payload, "guardian_address", $$v)
+                  },
+                  expression: "payload.guardian_address"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "third-row" },
+            [
+              _c("v-text-field", {
+                attrs: {
+                  rules: [_vm.rules.required, _vm.rules.email],
+                  label: "Email",
+                  outlined: ""
+                },
+                model: {
+                  value: _vm.payload.email,
+                  callback: function($$v) {
+                    _vm.$set(_vm.payload, "email", $$v)
+                  },
+                  expression: "payload.email"
+                }
+              })
+            ],
+            1
+          )
+        ]),
         _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "third-row" },
-          [
-            _c("v-text-field", {
-              attrs: {
-                rules: [_vm.rules.required],
-                label: "Birthplace",
-                outlined: ""
-              },
-              model: {
-                value: _vm.payload.birthplace,
-                callback: function($$v) {
-                  _vm.$set(_vm.payload, "birthplace", $$v)
+        _c("div", { staticClass: "inputs-1st-layer" }, [
+          _c(
+            "div",
+            { staticClass: "third-row" },
+            [
+              _c("v-text-field", {
+                attrs: {
+                  rules: [_vm.rules.counter],
+                  label: "Mobile Number",
+                  counter: "",
+                  maxlength: "11",
+                  outlined: ""
                 },
-                expression: "payload.birthplace"
-              }
-            })
-          ],
-          1
-        ),
+                model: {
+                  value: _vm.payload.mobile_number,
+                  callback: function($$v) {
+                    _vm.$set(_vm.payload, "mobile_number", $$v)
+                  },
+                  expression: "payload.mobile_number"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "third-row" },
+            [
+              _c("v-text-field", {
+                attrs: { label: "Telephone Number", outlined: "" },
+                model: {
+                  value: _vm.payload.tel_phone_number,
+                  callback: function($$v) {
+                    _vm.$set(_vm.payload, "tel_phone_number", $$v)
+                  },
+                  expression: "payload.tel_phone_number"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "third-row" },
+            [
+              _c("v-text-field", {
+                attrs: { label: "Agreement", outlined: "" },
+                model: {
+                  value: _vm.payload.agreement,
+                  callback: function($$v) {
+                    _vm.$set(_vm.payload, "agreement", $$v)
+                  },
+                  expression: "payload.agreement"
+                }
+              })
+            ],
+            1
+          )
+        ]),
         _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "third-row" },
-          [
-            _c("v-text-field", {
-              attrs: {
-                rules: [_vm.rules.required],
-                label: "Educational Attainment",
-                outlined: ""
-              },
-              model: {
-                value: _vm.payload.educational_attainment,
-                callback: function($$v) {
-                  _vm.$set(_vm.payload, "educational_attainment", $$v)
+        _c("div", { staticClass: "inputs-1st-layer" }, [
+          _c(
+            "div",
+            { staticClass: "third-row" },
+            [
+              _c("v-select", {
+                attrs: {
+                  items: _vm.item3,
+                  "item-text": "value",
+                  "item-value": "id",
+                  label: "Civil Status",
+                  outlined: ""
                 },
-                expression: "payload.educational_attainment"
-              }
-            })
-          ],
-          1
-        )
+                model: {
+                  value: _vm.payload.civil_status,
+                  callback: function($$v) {
+                    _vm.$set(_vm.payload, "civil_status", $$v)
+                  },
+                  expression: "payload.civil_status"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "third-row" },
+            [
+              _c("v-select", {
+                attrs: {
+                  items: _vm.item2,
+                  "item-text": "value",
+                  "item-value": "id",
+                  label: "Are you regular?",
+                  outlined: ""
+                },
+                model: {
+                  value: _vm.payload.isregular,
+                  callback: function($$v) {
+                    _vm.$set(_vm.payload, "isregular", $$v)
+                  },
+                  expression: "payload.isregular"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "third-row" },
+            [
+              _c("v-text-field", {
+                attrs: {
+                  rules: [_vm.rules.required],
+                  label: "Applicant Classification",
+                  outlined: ""
+                },
+                model: {
+                  value: _vm.payload.applicant_classification,
+                  callback: function($$v) {
+                    _vm.$set(_vm.payload, "applicant_classification", $$v)
+                  },
+                  expression: "payload.applicant_classification"
+                }
+              })
+            ],
+            1
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "inputs-1st-layer" }, [
+          _c(
+            "div",
+            { staticClass: "third-row" },
+            [
+              _c("v-text-field", {
+                attrs: {
+                  rules: [_vm.rules.required],
+                  label: "Course Qualification",
+                  outlined: ""
+                },
+                model: {
+                  value: _vm.payload.course_qualification,
+                  callback: function($$v) {
+                    _vm.$set(_vm.payload, "course_qualification", $$v)
+                  },
+                  expression: "payload.course_qualification"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "third-row" },
+            [
+              _c("v-text-field", {
+                attrs: {
+                  rules: [_vm.rules.required],
+                  label: "Scholar Type",
+                  outlined: ""
+                },
+                model: {
+                  value: _vm.payload.scholar_type,
+                  callback: function($$v) {
+                    _vm.$set(_vm.payload, "scholar_type", $$v)
+                  },
+                  expression: "payload.scholar_type"
+                }
+              })
+            ],
+            1
+          )
+        ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "inputs-1st-layer" }, [
-        _c(
-          "div",
-          { staticClass: "third-row" },
-          [
-            _c("v-text-field", {
-              attrs: {
-                rules: [_vm.rules.required],
-                label: "Employment Type",
-                outlined: ""
-              },
-              model: {
-                value: _vm.payload.employment_type,
-                callback: function($$v) {
-                  _vm.$set(_vm.payload, "employment_type", $$v)
-                },
-                expression: "payload.employment_type"
+      _c(
+        "div",
+        { staticClass: "btn_submit" },
+        [
+          _c(
+            "v-btn",
+            {
+              staticClass: "submit",
+              attrs: { color: "blue" },
+              on: {
+                click: function($event) {
+                  return _vm.save()
+                }
               }
-            })
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "third-row" },
-          [
-            _c("v-text-field", {
-              attrs: {
-                rules: [_vm.rules.required],
-                label: "Employment Status",
-                outlined: ""
-              },
-              model: {
-                value: _vm.payload.employment_status,
-                callback: function($$v) {
-                  _vm.$set(_vm.payload, "employment_status", $$v)
-                },
-                expression: "payload.employment_status"
-              }
-            })
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "third-row" },
-          [
-            _c("v-text-field", {
-              attrs: {
-                rules: [_vm.rules.required],
-                label: "Home Address",
-                outlined: ""
-              },
-              model: {
-                value: _vm.payload.home_address,
-                callback: function($$v) {
-                  _vm.$set(_vm.payload, "home_address", $$v)
-                },
-                expression: "payload.home_address"
-              }
-            })
-          ],
-          1
-        )
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "split right" }, [
-      _c("div", { staticClass: "inputs-1st-layer" }, [
-        _c(
-          "div",
-          { staticClass: "third-row" },
-          [
-            _c("v-text-field", {
-              attrs: {
-                rules: [_vm.rules.required, _vm.rules.counter],
-                label: "Guardian Name",
-                counter: "",
-                maxlength: "20",
-                outlined: ""
-              },
-              model: {
-                value: _vm.payload.guardian_name,
-                callback: function($$v) {
-                  _vm.$set(_vm.payload, "guardian_name", $$v)
-                },
-                expression: "payload.guardian_name"
-              }
-            })
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "third-row" },
-          [
-            _c("v-text-field", {
-              attrs: {
-                rules: [_vm.rules.required, _vm.rules.counter],
-                label: "Guardian Address",
-                counter: "",
-                maxlength: "20",
-                outlined: ""
-              },
-              model: {
-                value: _vm.payload.guardian_address,
-                callback: function($$v) {
-                  _vm.$set(_vm.payload, "guardian_address", $$v)
-                },
-                expression: "payload.guardian_address"
-              }
-            })
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "third-row" },
-          [
-            _c("v-text-field", {
-              attrs: {
-                rules: [_vm.rules.required, _vm.rules.email],
-                label: "Email",
-                outlined: ""
-              },
-              model: {
-                value: _vm.payload.email,
-                callback: function($$v) {
-                  _vm.$set(_vm.payload, "email", $$v)
-                },
-                expression: "payload.email"
-              }
-            })
-          ],
-          1
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "inputs-1st-layer" }, [
-        _c(
-          "div",
-          { staticClass: "third-row" },
-          [
-            _c("v-text-field", {
-              attrs: {
-                rules: [_vm.rules.counter],
-                label: "Mobile Number",
-                counter: "",
-                maxlength: "11",
-                outlined: ""
-              },
-              model: {
-                value: _vm.payload.mobile_number,
-                callback: function($$v) {
-                  _vm.$set(_vm.payload, "mobile_number", $$v)
-                },
-                expression: "payload.mobile_number"
-              }
-            })
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "third-row" },
-          [
-            _c("v-text-field", {
-              attrs: { label: "Telephone Number", outlined: "" },
-              model: {
-                value: _vm.payload.tel_phone_number,
-                callback: function($$v) {
-                  _vm.$set(_vm.payload, "tel_phone_number", $$v)
-                },
-                expression: "payload.tel_phone_number"
-              }
-            })
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "third-row" },
-          [
-            _c("v-text-field", {
-              attrs: {
-                rules: [_vm.rules.required],
-                label: "Agreement",
-                outlined: ""
-              },
-              model: {
-                value: _vm.payload.agreement,
-                callback: function($$v) {
-                  _vm.$set(_vm.payload, "agreement", $$v)
-                },
-                expression: "payload.agreement"
-              }
-            })
-          ],
-          1
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "inputs-1st-layer" }, [
-        _c(
-          "div",
-          { staticClass: "third-row" },
-          [
-            _c("FormulateInput", {
-              staticStyle: { border: "1px solid" },
-              attrs: {
-                type: "file",
-                placeholder: "Photo",
-                validation: "required"
-              },
-              model: {
-                value: _vm.payload.photo,
-                callback: function($$v) {
-                  _vm.$set(_vm.payload, "photo", $$v)
-                },
-                expression: "payload.photo"
-              }
-            })
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "third-row" },
-          [
-            _c("v-select", {
-              attrs: {
-                items: _vm.item2,
-                label: "Are you regular?",
-                outlined: ""
-              },
-              model: {
-                value: _vm.payload.isregular,
-                callback: function($$v) {
-                  _vm.$set(_vm.payload, "isregular", $$v)
-                },
-                expression: "payload.isregular"
-              }
-            })
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "third-row" },
-          [
-            _c("v-text-field", {
-              attrs: {
-                rules: [_vm.rules.required],
-                label: "Applicant Classification",
-                outlined: ""
-              },
-              model: {
-                value: _vm.payload.applicant_classification,
-                callback: function($$v) {
-                  _vm.$set(_vm.payload, "applicant_classification", $$v)
-                },
-                expression: "payload.applicant_classification"
-              }
-            })
-          ],
-          1
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "inputs-1st-layer" }, [
-        _c(
-          "div",
-          { staticClass: "third-row" },
-          [
-            _c("v-text-field", {
-              attrs: {
-                rules: [_vm.rules.required],
-                label: "Course Qualification",
-                outlined: ""
-              },
-              model: {
-                value: _vm.payload.course_qualification,
-                callback: function($$v) {
-                  _vm.$set(_vm.payload, "course_qualification", $$v)
-                },
-                expression: "payload.course_qualification"
-              }
-            })
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "third-row" },
-          [
-            _c("v-text-field", {
-              attrs: {
-                rules: [_vm.rules.required],
-                label: "Scholar Type",
-                outlined: ""
-              },
-              model: {
-                value: _vm.payload.scholar_type,
-                callback: function($$v) {
-                  _vm.$set(_vm.payload, "scholar_type", $$v)
-                },
-                expression: "payload.scholar_type"
-              }
-            })
-          ],
-          1
-        )
-      ])
-    ]),
-    _vm._v(" "),
-    _c(
-      "div",
-      [
-        _c(
-          "v-btn",
-          {
-            attrs: { fab: "", dark: "", color: "blue" },
-            on: {
-              click: function($event) {
-                return _vm.save()
-              }
-            }
-          },
-          [_vm._v(" SUBMIT\r\n      ")]
-        )
-      ],
-      1
-    )
+            },
+            [_vm._v(" SUBMIT\r\n      ")]
+          )
+        ],
+        1
+      )
+    ])
   ])
 }
 var staticRenderFns = []

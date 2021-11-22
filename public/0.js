@@ -598,7 +598,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../../node_module
 
 
 // module
-exports.push([module.i, "\n.dia-thumbnail[data-v-0cf6f2f2]{\r\n  display: flex;\r\n  justify-content: center;\r\n  background-color: white;\r\n  margin-bottom: 30px;\n}\n.dia-btn[data-v-0cf6f2f2]{\r\n  display: flex;\r\n  justify-content: flex-end;\n}\n.main-dialog[data-v-0cf6f2f2]{\r\n  padding: 20px;\n}\r\n", ""]);
+exports.push([module.i, "\n.dia-thumbnail[data-v-0cf6f2f2]{\r\n  display: flex;\r\n  justify-content: center;\r\n  background-color: white;\r\n  margin-bottom: 30px;\n}\n.dia-btn[data-v-0cf6f2f2]{\r\n  display: flex;\r\n  justify-content: flex-end;\n}\n.main-dialog[data-v-0cf6f2f2]{\r\n  padding: 20px;\n}\n.update-image[data-v-0cf6f2f2]{\r\n  cursor: pointer;\r\n  object-fit: cover;\r\n  max-height: 400px;\r\n  max-width: 400px;\n}\r\n", ""]);
 
 // exports
 

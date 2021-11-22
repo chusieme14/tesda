@@ -95,4 +95,11 @@ class AppointmentController extends Controller
         }
         return $randomString;
     }
+
+    public function allPending(){
+        return Appointment::where('status',0)->get();
+    }
+    public function allApproved(){
+        return Appointment::where('status',1)->get();
+    }
 }

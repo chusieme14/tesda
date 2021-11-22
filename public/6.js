@@ -9,12 +9,6 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 //
 //
 //
@@ -92,7 +86,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this = this;
 
       this.isfetching = true;
-      axios.get("/admin/appointment/approved/".concat(this.user.id)).then(function (_ref) {
+      axios.get("/admin/pending/appointments").then(function (_ref) {
         var data = _ref.data;
         _this.appointments = data;
         _this.isfetching = false;
@@ -108,24 +102,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
         _this2.getAppointments();
       });
-    },
-    accept: function accept(value) {
-      var _this3 = this;
+    } // accept(value){
+    //   let payload = value
+    //   axios.put('/admin/accept/appointment',{...payload}).then(({data})=>{
+    //     this.getAppointments()
+    //     this.$toast.open({ message: `Appointment of ${payload.lname +' '+payload.fname} is successfully updated`, position: 'top-right', type: "success", duration: 5000})
+    //   })
+    // }
 
-      var payload = value;
-      axios.put('/admin/accept/appointment', _objectSpread({}, payload)).then(function (_ref3) {
-        var data = _ref3.data;
-
-        _this3.getAppointments();
-
-        _this3.$toast.open({
-          message: "Appointment of ".concat(payload.lname + ' ' + payload.fname, " is successfully updated"),
-          position: 'top-right',
-          type: "success",
-          duration: 5000
-        });
-      });
-    }
   },
   created: function created() {
     this.getAuthuser();

@@ -37,6 +37,7 @@ class CreateAppointmentsTable extends Migration
             $table->string('employer_name')->nullable();
             $table->boolean('agreement')->nullable();
             $table->string('photo');
+            $table->boolean('status')->default(false);
             $table->boolean('isregular')->default(true);
             $table->string('applicant_classification')->nullable();
             $table->string('course_qualification')->nullable();

@@ -74,7 +74,7 @@ export default {
     methods:{
       getAppointments(){
         this.isfetching = true
-        axios.get(`/admin/appointment/approved/${this.user.id}`).then(({data})=>{
+        axios.get(`/admin/pending/appointments`).then(({data})=>{
           this.appointments = data
           this.isfetching = false
         })
@@ -86,13 +86,13 @@ export default {
           this.getAppointments()
         })
       },
-      accept(value){
-        let payload = value
-        axios.put('/admin/accept/appointment',{...payload}).then(({data})=>{
-          this.getAppointments()
-          this.$toast.open({ message: `Appointment of ${payload.lname +' '+payload.fname} is successfully updated`, position: 'top-right', type: "success", duration: 5000})
-        })
-      }
+      // accept(value){
+      //   let payload = value
+      //   axios.put('/admin/accept/appointment',{...payload}).then(({data})=>{
+      //     this.getAppointments()
+      //     this.$toast.open({ message: `Appointment of ${payload.lname +' '+payload.fname} is successfully updated`, position: 'top-right', type: "success", duration: 5000})
+      //   })
+      // }
     },
     created(){
       this.getAuthuser()
