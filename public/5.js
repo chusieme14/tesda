@@ -34,6 +34,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -73,7 +77,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../../node_module
 
 
 // module
-exports.push([module.i, "\n.container-grid[data-v-1f7c8f8d] {\n    display: grid;\n    gap: 1rem;\n    grid-template-columns: repeat(auto-fill, minmax(70vw, 1fr));\n    grid-auto-rows: 50px;\n}\n.course-img[data-v-1f7c8f8d]{\n    max-height: 200px;\n    max-width: 50px;\n}\n.card-container[data-v-1f7c8f8d] {\n    z-index: 1;\n    display: flex;\n    flex-direction: row;\n    justify-content: center;\n    align-items: center;\n    /* background: #171d30; */\n    color: #263238;\n    /* box-shadow: rgba(3, 8, 20, 0.1) 0px 0.15rem 0.5rem, rgba(2, 8, 20, 0.1) 0px 0.075rem 0.175rem; */\n    height: 100%;\n    width: 100%;\n    border-radius: 4px;\n    transition: all 500ms;\n    overflow: hidden;\n    background-size: cover;\n    background-position: center;\n    background-repeat: no-repeat;\n    /* opacity: 0.5; */\n}\n\n/* .card-container:hover {\n    box-shadow: rgba(2, 8, 20, 0.1) 0px 0.35em 1.175em, rgba(2, 8, 20, 0.08) 0px 0.175em 0.5em;\n    border: 1px solid #171d30;\n} */\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* .container-grid {\n    display: grid;\n    gap: 1rem;\n    grid-template-columns: repeat(auto-fill, minmax(70vw, 1fr));\n    grid-auto-rows: 50px;\n} */\n.center[data-v-1f7c8f8d] {\n    margin-left: auto;\n    margin-right: auto;\n}\n\n/* .card-container:hover {\n    box-shadow: rgba(2, 8, 20, 0.1) 0px 0.35em 1.175em, rgba(2, 8, 20, 0.08) 0px 0.175em 0.5em;\n    border: 1px solid #171d30;\n} */\n", ""]);
 
 // exports
 
@@ -127,63 +131,66 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    {
-      staticClass: "fixed-container container-grid mt-2",
-      staticStyle: { padding: "20px" }
-    },
+    { staticClass: "container-grid mt-2", staticStyle: { padding: "20px" } },
     [
-      _c("v-simple-table", { attrs: { color: _vm.transparent } }, [
-        _c("thead", [
-          _c("tr", [
-            _c("th", { staticClass: "text-center" }),
-            _vm._v(" "),
-            _c("th", { staticClass: "text-left" }, [
-              _c("h1", [_vm._v("Name")])
-            ]),
-            _vm._v(" "),
-            _c("th", { staticClass: "text-left" }, [
-              _c("h1", [_vm._v("Name")])
-            ]),
-            _vm._v(" "),
-            _c("th", { staticClass: "text-left" }, [
-              _c("h1", [_vm._v("Name")])
-            ]),
-            _vm._v(" "),
-            _c("th", { staticClass: "text-left" }, [_c("h1", [_vm._v("Name")])])
-          ])
-        ]),
+      _c("table", { staticClass: "center", staticStyle: { width: "70%" } }, [
+        _vm._m(0),
         _vm._v(" "),
         _c(
           "tbody",
           _vm._l(_vm.courses, function(item) {
-            return _c("tr", { key: item.id }, [
-              _c("th", { staticClass: "text-center" }),
-              _vm._v(" "),
+            return _c("tr", { key: item.id, on: { click: _vm.getCourses } }, [
               _c("th", { staticClass: "text-left" }, [
-                _c("h1", [_vm._v("Name")])
+                _c(
+                  "h1",
+                  { staticStyle: { padding: "5px" } },
+                  [
+                    _c(
+                      "v-avatar",
+                      { staticStyle: { "margin-right": "20px" } },
+                      [_c("img", { attrs: { src: item.thumbnail } })]
+                    ),
+                    _vm._v(
+                      "\n                    " +
+                        _vm._s(item.name + " " + item.course_code) +
+                        "\n                "
+                    )
+                  ],
+                  1
+                )
               ]),
               _vm._v(" "),
               _c("th", { staticClass: "text-left" }, [
-                _c("h1", [_vm._v("Name")])
-              ]),
-              _vm._v(" "),
-              _c("th", { staticClass: "text-left" }, [
-                _c("h1", [_vm._v("Name")])
-              ]),
-              _vm._v(" "),
-              _c("th", { staticClass: "text-left" }, [
-                _c("h1", [_vm._v("Name")])
+                _c("h1", { staticStyle: { padding: "10px" } }, [
+                  _vm._v(_vm._s(item.durations + " hours"))
+                ])
               ])
             ])
           }),
           0
         )
-      ])
-    ],
-    1
+      ]),
+      _vm._v(" "),
+      _c("div", { staticStyle: { height: "250px" } })
+    ]
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { staticClass: "text-left" }, [
+          _c("h1", [_vm._v("Program Title")])
+        ]),
+        _vm._v(" "),
+        _c("th", { staticClass: "text-left" }, [_c("h1", [_vm._v("Duration")])])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
