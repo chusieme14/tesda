@@ -1,26 +1,30 @@
 <template>
-    <div style="padding: 20px" class="fixed-container container-grid mt-2">
-        <v-simple-table :color="transparent">
-            <thead>
-                <tr>
-                <th class="text-center"></th>
-                <th class="text-left"> <h1>Name</h1> </th>
-                <th class="text-left"> <h1>Name</h1> </th>
-                <th class="text-left"> <h1>Name</h1> </th>
-                <th class="text-left"> <h1>Name</h1> </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="item in courses" :key="item.id" >
-                <th class="text-center"></th>
-                <th class="text-left"> <h1>Name</h1> </th>
-                <th class="text-left"> <h1>Name</h1> </th>
-                <th class="text-left"> <h1>Name</h1> </th>
-                <th class="text-left"> <h1>Name</h1> </th>
-                </tr>
-            </tbody>
-        </v-simple-table>
-    </div>
+        <div style="padding: 20px" class="container-grid mt-2">
+            <table style="width: 70%" class="center">
+                <thead>
+                    <tr>
+                    <th class="text-left"> <h1>Program Title</h1> </th>
+                    <th class="text-left"> <h1>Duration</h1> </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="item in courses" :key="item.id" @click="getCourses">
+                        <th class="text-left"> <h1 style="padding: 5px">
+                                <v-avatar style="margin-right: 20px">
+                                    <img
+                                        :src="item.thumbnail"
+                                    >
+                                </v-avatar>
+                            {{item.name + ' ' + item.course_code}}
+                        </h1> </th>
+                        <th class="text-left"> <h1 style="padding: 10px">{{item.durations + ' hours'}}</h1> </th>
+                    </tr>
+                </tbody>
+            </table>
+            <div style="height: 250px">
+
+            </div>
+        </div>
 </template>
 
 <script>
@@ -51,34 +55,15 @@ export default {
 <style scoped>
 
 
-    .container-grid {
+    /* .container-grid {
         display: grid;
         gap: 1rem;
         grid-template-columns: repeat(auto-fill, minmax(70vw, 1fr));
         grid-auto-rows: 50px;
-    }
-    .course-img{
-        max-height: 200px;
-        max-width: 50px;
-    }
-    .card-container {
-        z-index: 1;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        /* background: #171d30; */
-        color: #263238;
-        /* box-shadow: rgba(3, 8, 20, 0.1) 0px 0.15rem 0.5rem, rgba(2, 8, 20, 0.1) 0px 0.075rem 0.175rem; */
-        height: 100%;
-        width: 100%;
-        border-radius: 4px;
-        transition: all 500ms;
-        overflow: hidden;
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        /* opacity: 0.5; */
+    } */
+    .center {
+        margin-left: auto;
+        margin-right: auto;
     }
 
     /* .card-container:hover {
