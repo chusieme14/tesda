@@ -81,7 +81,7 @@ class AppointmentController extends Controller
             $imageName = date("YmdHis").$random.'.jpeg';
             file_put_contents(public_path() . '/' . $path . $imageName, $data);
         } catch (\Exception $e) {}
-
+        
         return $imageName;
         // file_put_contents(public_path() . '/' . 'images/items/' . $imageName, $data);
     }

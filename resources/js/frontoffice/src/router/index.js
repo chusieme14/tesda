@@ -18,6 +18,11 @@ const routes = [
         path: '/enroll',
         component: () => import('@front/pages/courses/enroll.vue'),
         name:'enroll'
+    },
+    {
+        path: '/herman-profile',
+        component: () => import('@front/pages/profile/index.vue'),
+        name:'herman-profile'
     }
 ]
 

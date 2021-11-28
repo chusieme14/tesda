@@ -438,6 +438,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     course: {}
@@ -1056,7 +1058,7 @@ var render = function() {
                               _c("v-label", [_vm._v("Duration ")]),
                               _vm._v(" "),
                               _c("v-text-field", {
-                                attrs: { solo: "", dense: "" },
+                                attrs: { solo: "", dense: "", type: "number" },
                                 model: {
                                   value: _vm.courseDetails.durations,
                                   callback: function($$v) {
@@ -1080,7 +1082,7 @@ var render = function() {
                               _c("v-label", [_vm._v("Slot ")]),
                               _vm._v(" "),
                               _c("v-text-field", {
-                                attrs: { solo: "", dense: "" },
+                                attrs: { solo: "", dense: "", type: "number" },
                                 model: {
                                   value: _vm.courseDetails.slots,
                                   callback: function($$v) {

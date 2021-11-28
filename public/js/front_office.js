@@ -2311,10 +2311,28 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    return {};
-  }
+    return {
+      isnav: false,
+      iswho: false
+    };
+  },
+  watch: {}
 });
 
 /***/ }),
@@ -2500,7 +2518,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.company[data-v-6b978d0d]{\n    position:absolute;\n    min-width: 98vw;\n    max-width: 98vw;\n}\n", ""]);
+exports.push([module.i, "\n.company[data-v-6b978d0d]{\n    position:absolute;\n    min-width: 98vw;\n    max-width: 98vw;\n}\n.custom-navbar[data-v-6b978d0d]{\n    position: absolute;\n}\n.custom-navbar-inside[data-v-6b978d0d]{\n    display: flex;\n    flex-direction: column;\n    margin-top: 51px;\n    margin-left: -31px;\n}\n.custom-navbar-inside1[data-v-6b978d0d]{\n    position: absolute;\n    flex-direction: column;\n    margin-top: 96px;\n    margin-left: 115px;\n}\n", ""]);
 
 // exports
 
@@ -21197,9 +21215,70 @@ var render = function() {
       attrs: { color: "#FFFFFF", app: "", height: "60" }
     },
     [
-      _c("v-app-bar-nav-icon"),
+      _c("v-app-bar-nav-icon", {
+        on: {
+          click: function($event) {
+            _vm.isnav = !_vm.isnav
+          }
+        }
+      }),
       _vm._v(" "),
       _c("div", { staticClass: "toggle-sidebar-wrapper" }, [
+        _vm.isnav
+          ? _c("div", { staticClass: "custom-navbar" }, [
+              _c(
+                "div",
+                { staticClass: "custom-navbar-inside" },
+                [
+                  _c("v-btn", { staticClass: "mb-2" }, [_vm._v("Home")]),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      staticClass: "mb-2",
+                      on: {
+                        mouseenter: function($event) {
+                          _vm.iswho = true
+                        }
+                      }
+                    },
+                    [_vm._v("Who we are")]
+                  ),
+                  _vm._v(" "),
+                  _c("v-btn", [_vm._v("Contact Us")])
+                ],
+                1
+              )
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.iswho
+          ? _c("div", { staticClass: "custom-navbar" }, [
+              _c(
+                "div",
+                { staticClass: "custom-navbar-inside1" },
+                [
+                  _c(
+                    "v-btn",
+                    { staticClass: "mb-2", attrs: { "min-width": "138" } },
+                    [_vm._v("Hermann Gmeiner")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    { staticClass: "mb-2", attrs: { "min-width": "138" } },
+                    [_vm._v("SOS")]
+                  ),
+                  _vm._v(" "),
+                  _c("v-btn", { attrs: { "min-width": "138" } }, [
+                    _vm._v("TESDA")
+                  ])
+                ],
+                1
+              )
+            ])
+          : _vm._e(),
+        _vm._v(" "),
         _c("img", {
           staticStyle: { height: "55px", "margin-left": "10px" },
           attrs: { src: "images/logo/tesda_logo.png", alt: "Company Logo" }
@@ -82614,6 +82693,12 @@ var routes = [{
     return __webpack_require__.e(/*! import() */ 4).then(__webpack_require__.bind(null, /*! @front/pages/courses/enroll.vue */ "./resources/js/frontoffice/src/pages/courses/enroll.vue"));
   },
   name: 'enroll'
+}, {
+  path: '/herman-profile',
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ 8).then(__webpack_require__.bind(null, /*! @front/pages/profile/index.vue */ "./resources/js/frontoffice/src/pages/profile/index.vue"));
+  },
+  name: 'herman-profile'
 }];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   mode: 'history',
