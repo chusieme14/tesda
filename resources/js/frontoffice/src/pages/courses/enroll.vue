@@ -366,6 +366,11 @@ export default {
 
     },
 
+  },
+  watch:{
+    "payload.photo":function(val){
+        console.log(val,"photo")
+    }
   }
 }
 
@@ -383,6 +388,7 @@ export default {
    display: flex;
    justify-content: space-between;
    width: 98%;
+   z-index: 1000 !important;
  }
  .form_section{
      display: flex;

@@ -31,6 +31,7 @@
                             <v-text-field
                                 solo
                                 dense
+                                type="number"
                                 v-model="courseDetails.durations"
 
                             >
@@ -42,6 +43,7 @@
                             <v-text-field
                                 solo
                                 dense
+                                type="number"
                                 v-model="courseDetails.slots"
                                 
                             >
