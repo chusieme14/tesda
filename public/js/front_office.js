@@ -82684,7 +82684,7 @@ var routes = [{
 }, {
   path: '/about-us',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 7).then(__webpack_require__.bind(null, /*! @front/pages/about_us/index.vue */ "./resources/js/frontoffice/src/pages/about_us/index.vue"));
+    return __webpack_require__.e(/*! import() */ 8).then(__webpack_require__.bind(null, /*! @front/pages/about_us/index.vue */ "./resources/js/frontoffice/src/pages/about_us/index.vue"));
   },
   name: 'waiting'
 }, {
@@ -82696,7 +82696,7 @@ var routes = [{
 }, {
   path: '/herman-profile',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 8).then(__webpack_require__.bind(null, /*! @front/pages/profile/index.vue */ "./resources/js/frontoffice/src/pages/profile/index.vue"));
+    return __webpack_require__.e(/*! import() */ 6).then(__webpack_require__.bind(null, /*! @front/pages/profile/index.vue */ "./resources/js/frontoffice/src/pages/profile/index.vue"));
   },
   name: 'herman-profile'
 }];
