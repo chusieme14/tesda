@@ -33,11 +33,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -77,7 +72,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../../node_module
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* .container-grid {\n    display: grid;\n    gap: 1rem;\n    grid-template-columns: repeat(auto-fill, minmax(70vw, 1fr));\n    grid-auto-rows: 50px;\n} */\n.center[data-v-28f80784] {\n    margin-left: auto;\n    margin-right: auto;\n}\n\n/* .card-container:hover {\n    box-shadow: rgba(2, 8, 20, 0.1) 0px 0.35em 1.175em, rgba(2, 8, 20, 0.08) 0px 0.175em 0.5em;\n    border: 1px solid #171d30;\n} */\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* .container-grid {\n    display: grid;\n    gap: 1rem;\n    grid-template-columns: repeat(auto-fill, minmax(70vw, 1fr));\n    grid-auto-rows: 50px;\n} */\n.center[data-v-28f80784] {\n    margin-left: auto;\n    margin-right: auto;\n}\n\n/* .card-container:hover {\n    box-shadow: rgba(2, 8, 20, 0.1) 0px 0.35em 1.175em, rgba(2, 8, 20, 0.08) 0px 0.175em 0.5em;\n    border: 1px solid #171d30;\n} */\n.text[data-v-28f80784]{\n    font-size: 20px;\n    line-height: 2;\n    color: black;\n}\n", ""]);
 
 // exports
 
@@ -133,64 +128,32 @@ var render = function() {
     "div",
     { staticClass: "container-grid mt-2", staticStyle: { padding: "20px" } },
     [
-      _c("table", { staticClass: "center", staticStyle: { width: "70%" } }, [
-        _vm._m(0),
-        _vm._v(" "),
-        _c(
-          "tbody",
-          _vm._l(_vm.courses, function(item) {
-            return _c("tr", { key: item.id, on: { click: _vm.getCourses } }, [
-              _c("th", { staticClass: "text-left" }, [
-                _c(
-                  "h1",
-                  { staticStyle: { padding: "5px" } },
-                  [
-                    _c(
-                      "v-avatar",
-                      { staticStyle: { "margin-right": "20px" } },
-                      [_c("img", { attrs: { src: item.thumbnail } })]
-                    ),
-                    _vm._v(
-                      "\n                    " +
-                        _vm._s(item.name + " " + item.course_code) +
-                        "\n                "
-                    )
-                  ],
-                  1
-                )
-              ]),
-              _vm._v(" "),
-              _c("th", { staticClass: "text-left" }, [
-                _c("h1", { staticStyle: { padding: "10px" } }, [
-                  _vm._v(_vm._s(item.durations + " hours"))
-                ])
-              ])
+      _c(
+        "v-card",
+        [
+          _c("v-card-title", [
+            _c("h3", [
+              _vm._v("\n                Company Profile \n            ")
             ])
-          }),
-          0
-        )
-      ]),
+          ]),
+          _vm._v(" "),
+          _c("v-card-text", [
+            _c("p", { staticClass: "text" }, [
+              _vm._v(
+                "\n                SOS Children’s Villages is an international non-government organization that provides alternative family based care for orphaned, abandoned and neglected children. It was founded by Hermann Gmeiner in 1949 in Imst, Austria. He was committed to helping children in need – children who had lost their homes, their security and their families as a result of the Second World War.  With the support of many donors and co-workers, our organization has grown to help children all over the world.  \n\n                We take action for children as an independent non-governmental social development organization. We respect varying religions and cultures, and we work in countries and communities where our mission can contribute to development. We work in the spirit of the United Nations Convention on the rights of Child and we promote these rights around the world.  \n \n                With the SOS Children’s Village concept, our organization pioneered a family approach to the long-term care of orphaned and abandoned children.\n            "
+              )
+            ])
+          ])
+        ],
+        1
+      ),
       _vm._v(" "),
       _c("div", { staticStyle: { height: "250px" } })
-    ]
+    ],
+    1
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", [
-        _c("th", { staticClass: "text-left" }, [
-          _c("h1", [_vm._v("Program Title")])
-        ]),
-        _vm._v(" "),
-        _c("th", { staticClass: "text-left" }, [_c("h1", [_vm._v("Duration")])])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

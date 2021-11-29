@@ -1,7 +1,7 @@
 <template>
     <div>
         <v-card v-if="true" class="mt-3">
-            <v-card-title>{{course?'Update':'Add'}} Course</v-card-title>
+            <v-card-title>{{course.id?'Update':'Add'}} Course</v-card-title>
             <v-card-text>
                 <v-container>
                     <v-layout wrap row>
@@ -50,6 +50,18 @@
 
                             </v-text-field>
                         </v-flex>
+                        <v-flex md12>
+                            <v-label> Requirements</v-label>
+                            <v-textarea
+                                solo
+                                dense
+                                v-model="courseDetails.requirements"
+
+                            >
+
+                            </v-textarea>
+                        </v-flex>
+
                         <v-flex md12>
                             <v-label> Description</v-label>
                             <v-textarea
@@ -150,7 +162,7 @@ export default {
         // },
         save(){
             if(!this.courseDetails.course_code || !this.courseDetails.name || !this.courseDetails.durations
-            || !this.courseDetails.description) return this.haserror = true
+            || !this.courseDetails.description || !this.courseDetails.requirements) return this.haserror = true
             if(this.courseDetails.id){
                 this.$emit('update',this.courseDetails)
                 return
@@ -172,6 +184,7 @@ export default {
     watch:{
         course:{
             handler(value){
+                console.log(value,"couse")
                 this.courseDetails = {}
                 this.ischange = true
                 Object.assign(this.courseDetails,value)

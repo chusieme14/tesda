@@ -1,26 +1,21 @@
 <template>
     <div style="padding: 20px" class="container-grid mt-2">
-        <table style="width: 70%" class="center">
-            <thead>
-                <tr>
-                <th class="text-left"> <h1>Program Title</h1> </th>
-                <th class="text-left"> <h1>Duration</h1> </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="item in courses" :key="item.id" @click="getCourses">
-                    <th class="text-left"> <h1 style="padding: 5px">
-                            <v-avatar style="margin-right: 20px">
-                                <img
-                                    :src="item.thumbnail"
-                                >
-                            </v-avatar>
-                        {{item.name + ' ' + item.course_code}}
-                    </h1> </th>
-                    <th class="text-left"> <h1 style="padding: 10px">{{item.durations + ' hours'}}</h1> </th>
-                </tr>
-            </tbody>
-        </table>
+        <v-card>
+            <v-card-title>
+                <h3>
+                    Company Profile 
+                </h3>
+            </v-card-title>
+            <v-card-text>
+                <p class="text">
+                    SOS Children’s Villages is an international non-government organization that provides alternative family based care for orphaned, abandoned and neglected children. It was founded by Hermann Gmeiner in 1949 in Imst, Austria. He was committed to helping children in need – children who had lost their homes, their security and their families as a result of the Second World War.  With the support of many donors and co-workers, our organization has grown to help children all over the world.  
+
+                    We take action for children as an independent non-governmental social development organization. We respect varying religions and cultures, and we work in countries and communities where our mission can contribute to development. We work in the spirit of the United Nations Convention on the rights of Child and we promote these rights around the world.  
+     
+                    With the SOS Children’s Village concept, our organization pioneered a family approach to the long-term care of orphaned and abandoned children.
+                </p>
+            </v-card-text>
+        </v-card>
         <div style="height: 250px">
 
         </div>
@@ -70,4 +65,9 @@ export default {
         box-shadow: rgba(2, 8, 20, 0.1) 0px 0.35em 1.175em, rgba(2, 8, 20, 0.08) 0px 0.175em 0.5em;
         border: 1px solid #171d30;
     } */
+    .text{
+        font-size: 20px;
+        line-height: 2;
+        color: black;
+    }
 </style>

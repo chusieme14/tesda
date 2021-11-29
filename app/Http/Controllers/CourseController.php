@@ -19,6 +19,7 @@ class CourseController extends Controller
             'durations' => $request->durations,
             'slots' => $request->slots,
             'description' => $request->description,
+            'requirements' => $request->requirements,
         ]);
         if($request->thumbnail){
             $this->uploadPhoto($request->thumbnail,$course);
@@ -54,6 +55,7 @@ class CourseController extends Controller
             'durations' => $request->durations,
             'slots' => $request->slots,
             'description' => $request->description,
+            'requirements' => $request->requirements,
         ]);
         return $course;
     }

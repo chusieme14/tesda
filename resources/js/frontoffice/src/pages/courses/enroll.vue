@@ -73,6 +73,7 @@
             v-model="payload.age"
             :rules="[rules.required]"
             label="Age"
+            type="number"
             outlined
           ></v-text-field>
         </div>
@@ -149,7 +150,9 @@
                 <v-file-input
                     v-model="payload.photo"
                     chips
+                    accept="image/*"
                     multiple
+                    ref="file_input"
                     label="File input"
                     @change="uploadFile()"
                 ></v-file-input>
@@ -197,6 +200,7 @@
             :rules="[rules.counter]"
             label="Mobile Number"
             counter
+            type="number"
             maxlength="11"
             outlined
           ></v-text-field>
@@ -206,12 +210,14 @@
             v-model="payload.tel_phone_number"
             label="Telephone Number"
             outlined
+            type="number"
           ></v-text-field>
         </div>
         <div class="third-row">
           <v-text-field
             v-model="payload.agreement"
             label="Agreement"
+            type="number"
             outlined
           ></v-text-field>
         </div>
@@ -265,14 +271,31 @@
         </div>
     </div>
   </div>
-  <div class="btn_submit">
+ <v-spacer></v-spacer>
       <v-btn
-        class="submit"
         color="blue"
         @click="save()"> SUBMIT
       </v-btn>
-  </div>
  </div>
+ <v-dialog
+      v-model="dialog"
+      hide-overlay
+      persistent
+      width="500"
+    >
+      <v-card
+        color="primary"
+        dark
+      >
+        <v-card-title>
+          <v-spacer></v-spacer>
+          <v-icon @click="dialog=false,$router.push({name:'home'})" class="icon-p">mdi-window-close</v-icon>
+        </v-card-title>
+        <v-card-text>
+          <h3>Thank you for submitting the needed requirements, kindly wait for the approval message.</h3>
+        </v-card-text>
+      </v-card>
+    </v-dialog>
 </div>
 
 </template>
@@ -316,6 +339,7 @@ export default {
                 course_qualification:'',
                 scholar_type:'',
             },
+            dialog:true,
             rules: {
               required: value => !!value || 'Required.',
               counter: value => value.length <= 20 || 'Max 20 characters',
@@ -324,8 +348,8 @@ export default {
                 return pattern.test(value) || 'Invalid e-mail.'
               },
             activePicker: null,
+          },
             menu: false,
-          }
         }
     },
   computed:{
@@ -339,12 +363,12 @@ export default {
   methods: {
     save(){
        axios.post('/api/enroll', this.payload).then(({data})=>{
-                this.departments = data
-            })
+            this.departments = data
+            this.dialog=true
+        })
     },
     uploadFile() {
            let vm = this;
-
             if (this.$refs.file_input.files && this.$refs.file_input.files[0]) {
                 var reader = new FileReader();
 

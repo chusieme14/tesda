@@ -20,6 +20,7 @@ class CreateCoursesTable extends Migration
             $table->string('durations');
             $table->string('description');
             $table->string('slots');
+            $table->longText('requirements');
             $table->integer('status');
             $table->string('thumbnail')->nullable();
             $table->timestamps();

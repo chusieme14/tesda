@@ -440,6 +440,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     course: {}
@@ -486,7 +498,7 @@ __webpack_require__.r(__webpack_exports__);
     //     })
     // },
     save: function save() {
-      if (!this.courseDetails.course_code || !this.courseDetails.name || !this.courseDetails.durations || !this.courseDetails.description) return this.haserror = true;
+      if (!this.courseDetails.course_code || !this.courseDetails.name || !this.courseDetails.durations || !this.courseDetails.description || !this.courseDetails.requirements) return this.haserror = true;
 
       if (this.courseDetails.id) {
         this.$emit('update', this.courseDetails);
@@ -506,6 +518,7 @@ __webpack_require__.r(__webpack_exports__);
   watch: {
     course: {
       handler: function handler(value) {
+        console.log(value, "couse");
         this.courseDetails = {};
         this.ischange = true;
         Object.assign(this.courseDetails, value);
@@ -994,7 +1007,7 @@ var render = function() {
             { staticClass: "mt-3" },
             [
               _c("v-card-title", [
-                _vm._v(_vm._s(_vm.course ? "Update" : "Add") + " Course")
+                _vm._v(_vm._s(_vm.course.id ? "Update" : "Add") + " Course")
               ]),
               _vm._v(" "),
               _c(
@@ -1089,6 +1102,30 @@ var render = function() {
                                     _vm.$set(_vm.courseDetails, "slots", $$v)
                                   },
                                   expression: "courseDetails.slots"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-flex",
+                            { attrs: { md12: "" } },
+                            [
+                              _c("v-label", [_vm._v(" Requirements")]),
+                              _vm._v(" "),
+                              _c("v-textarea", {
+                                attrs: { solo: "", dense: "" },
+                                model: {
+                                  value: _vm.courseDetails.requirements,
+                                  callback: function($$v) {
+                                    _vm.$set(
+                                      _vm.courseDetails,
+                                      "requirements",
+                                      $$v
+                                    )
+                                  },
+                                  expression: "courseDetails.requirements"
                                 }
                               })
                             ],
