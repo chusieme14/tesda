@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\UserController;
@@ -23,7 +24,10 @@ Route::group(['middleware'=>['auth:sanctum']],function(){
     Route::get('/admin/user/active/{status}',[UserController::class,'getUsers']);
     
     //appointment
-    Route::get('/admin/pending/appointments',[UserController::class,'getUsers']);
+    Route::get('/admin/pending/appointments',[AppointmentController::class,'allPending']);
+    Route::get('/admin/approve/appointments',[AppointmentController::class,'allApproved']);
+    Route::put('/admin/accept/{id}/appointment',[AppointmentController::class,'accept']);
+    Route::delete('/admin/remove/appointment/{id}',[AppointmentController::class,'delete']);
 
 });
 Route::get('admin/{any?}',function(){

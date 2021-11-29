@@ -102,4 +102,10 @@ class AppointmentController extends Controller
     public function allApproved(){
         return Appointment::where('status',1)->get();
     }
+    public function accept($id){
+        return Appointment::where('id',$id)->first()->update(['status'=>1]);
+    }
+    public function delete($id){
+        return Appointment::where('id',$id)->first()->delete();
+    }
 }

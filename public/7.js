@@ -66,12 +66,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -86,7 +80,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       this.isfetching = true;
-      axios.get("/admin/pending/appointments").then(function (_ref) {
+      axios.get("/admin/approve/appointments").then(function (_ref) {
         var data = _ref.data;
         _this.appointments = data;
         _this.isfetching = false;
@@ -112,7 +106,7 @@ __webpack_require__.r(__webpack_exports__);
 
   },
   created: function created() {
-    this.getAuthuser();
+    this.getAppointments();
   }
 });
 
@@ -162,6 +156,10 @@ var render = function() {
                             ]),
                             _vm._v(" "),
                             _c("th", { staticClass: "text-left" }, [
+                              _vm._v("\n              Gender\n            ")
+                            ]),
+                            _vm._v(" "),
+                            _c("th", { staticClass: "text-left" }, [
                               _vm._v(
                                 "\n              Mobile number\n            "
                               )
@@ -173,22 +171,12 @@ var render = function() {
                             _vm._v(" "),
                             _c("th", { staticClass: "text-left" }, [
                               _vm._v(
-                                "\n              Person to visit\n            "
+                                "\n              Learn Number\n            "
                               )
                             ]),
                             _vm._v(" "),
                             _c("th", { staticClass: "text-left" }, [
-                              _vm._v("\n              Department\n            ")
-                            ]),
-                            _vm._v(" "),
-                            _c("th", [
-                              _vm._v(
-                                "\n              approved by\n            "
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("th", [
-                              _vm._v("\n              Reason\n            ")
+                              _vm._v("\n              Regular\n            ")
                             ])
                           ])
                         ]),
@@ -198,37 +186,23 @@ var render = function() {
                           _vm._l(_vm.appointments, function(item) {
                             return _c("tr", { key: item.id }, [
                               _c("td", [
-                                _vm._v(_vm._s(item.fname + " " + item.lname))
+                                _vm._v(
+                                  _vm._s(item.first_name + " " + item.last_name)
+                                )
                               ]),
                               _vm._v(" "),
                               _c("td", [_vm._v(_vm._s(item.email))]),
                               _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(item.gender))]),
+                              _vm._v(" "),
                               _c("td", [_vm._v(_vm._s(item.mobile_number))]),
                               _vm._v(" "),
-                              _c("td", [_vm._v(_vm._s(item.appt_date))]),
+                              _c("td", [_vm._v(_vm._s(item.created_at))]),
                               _vm._v(" "),
-                              _c("td", [_vm._v(_vm._s(item.PTV))]),
-                              _vm._v(" "),
-                              _c("td", [
-                                _vm._v(_vm._s(item.department.short_name))
-                              ]),
+                              _c("td", [_vm._v(_vm._s(item.learn_number))]),
                               _vm._v(" "),
                               _c("td", [
-                                _vm._v(
-                                  _vm._s(
-                                    item.user.firstname +
-                                      " " +
-                                      item.user.lastname
-                                  )
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c("td", [
-                                _vm._v(
-                                  "\n             " +
-                                    _vm._s(item.reason) +
-                                    "\n            "
-                                )
+                                _vm._v(_vm._s(item.isregular ? true : false))
                               ])
                             ])
                           }),

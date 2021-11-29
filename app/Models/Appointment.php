@@ -32,6 +32,7 @@ class Appointment extends Model
         'employer_name',
         'agreement',
         'photo',
+        'status',
         'isregular',
         'applicant_classification',
         'course_qualification',

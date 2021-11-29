@@ -8,7 +8,7 @@
                 permanent
             >
                 <v-list>
-                    <v-list-item
+                    <!-- <v-list-item
                         link
                         :class="getCurrentUrl == 'list' ? 'active' : ''"
                     >
@@ -19,7 +19,7 @@
                         <router-link class="mt-2" tag="v-list-item-content" :to="{ name: 'list' }">
                             <p>Users</p>
                         </router-link>
-                    </v-list-item>
+                    </v-list-item> -->
                     <v-list-group
                         :value="true"
                         prepend-icon="mdi-account-box"

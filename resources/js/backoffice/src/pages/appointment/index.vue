@@ -34,19 +34,19 @@
                   Email
                 </th>
                 <th class="text-left">
+                  Gender
+                </th>
+                <th class="text-left">
                   Mobile number
                 </th>
                 <th class="text-left">
                   Date
                 </th>
                 <th class="text-left">
-                  Person to visit
+                  Learn Number
                 </th>
                 <th class="text-left">
-                  Reason
-                </th>
-                <th class="text-center">
-                  Department
+                  Regular
                 </th>
                 <th class="text-center">
                   Action
@@ -58,13 +58,14 @@
                 v-for="item in appointments"
                 :key="item.id"
               >
-                <td>{{ item.fname + ' ' + item.lname}}</td>
+                <td>{{ item.first_name + ' ' + item.last_name}}</td>
                 <td>{{ item.email }}</td>
+                <td>{{ item.gender }}</td>
                 <td>{{ item.mobile_number }}</td>
-                <td>{{ item.appt_date }}</td>
-                <td>{{ item.PTV }}</td>
-                <td>{{ item.reason }}</td>
-                <td class="text-center">{{ item.department.short_name }}</td>
+                <td>{{ item.created_at }}</td>
+                <td>{{ item.learn_number }}</td>
+                <td>{{ item.isregular?true:false }}</td>
+                <!-- <td class="text-center">{{ item.department.short_name }}</td> -->
                 <td class="text-center">
                   <v-btn fab
                     x-small color="primary"
@@ -73,13 +74,13 @@
                   >
                     <v-icon >mdi-check</v-icon>
                   </v-btn>
-                  <v-btn fab
+                  <!-- <v-btn fab
                     x-small color="success"
                     :disabled="isprocessing"
                     @click="selectedAppointment = item ,drawer = true"
                   >
                     <v-icon> mdi-pencil </v-icon>
-                  </v-btn>
+                  </v-btn> -->
                   <v-btn  fab
                     x-small color="error"
                     :disabled="isprocessing"
@@ -131,7 +132,7 @@ export default {
     methods:{
       getAppointments(){
         this.isfetching = true
-        axios.get(`/admin/appointment/waiting/${this.user.id}`).then(({data})=>{
+        axios.get(`/admin/pending/appointments/`).then(({data})=>{
           this.appointments = data
           this.isfetching = false
         })
@@ -147,10 +148,10 @@ export default {
         this.isprocessing = true
         value.user_id = this.user.id
         let payload = value
-        axios.put('/admin/accept/appointment',{...payload}).then(({data})=>{
+        axios.put(`/admin/accept/${value.id}/appointment`).then(({data})=>{
           this.getAppointments()
           this.isprocessing = false
-          this.$toast.open({ message: `Appointment of ${payload.lname +' '+payload.fname} is successfully updated`, position: 'top-right', type: "success", duration: 5000})
+          this.$toast.open({ message: `Approved`, position: 'top-right', type: "success", duration: 5000})
         })
       },
       update(value){
@@ -171,12 +172,12 @@ export default {
         axios.delete(`/admin/remove/appointment/${this.selectedAppointment.id}`).then(({data})=>{
           this.getAppointments()
           this.isprocessing = false
-          this.$toast.open({ message: `Appointment of ${this.selectedAppointment.lname +' '+this.selectedAppointment.fname} is successfully removed`, position: 'top-right', type: "success", duration: 5000})
+          this.$toast.open({ message: `Removed`, position: 'top-right', type: "success", duration: 5000})
         })
       }
     },
     created(){
-      this.getAuthuser()
+      this.getAppointments()
     }
 }
 </script>

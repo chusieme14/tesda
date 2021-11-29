@@ -19,22 +19,19 @@
                   Email
                 </th>
                 <th class="text-left">
+                  Gender
+                </th>
+                <th class="text-left">
                   Mobile number
                 </th>
                 <th class="text-left">
                   Date
                 </th>
                 <th class="text-left">
-                  Person to visit
+                  Learn Number
                 </th>
                 <th class="text-left">
-                  Department
-                </th>
-                <th>
-                  approved by
-                </th>
-                <th>
-                  Reason
+                  Regular
                 </th>
               </tr>
             </thead>
@@ -43,16 +40,13 @@
                 v-for="item in appointments"
                 :key="item.id"
               >
-                <td>{{ item.fname + ' ' + item.lname}}</td>
+                <td>{{ item.first_name + ' ' + item.last_name}}</td>
                 <td>{{ item.email }}</td>
+                <td>{{ item.gender }}</td>
                 <td>{{ item.mobile_number }}</td>
-                <td>{{ item.appt_date }}</td>
-                <td>{{ item.PTV }}</td>
-                <td>{{ item.department.short_name }}</td>
-                <td>{{item.user.firstname + ' ' + item.user.lastname}}</td>
-                <td>
-                 {{ item.reason }}
-                </td>
+                <td>{{ item.created_at }}</td>
+                <td>{{ item.learn_number }}</td>
+                <td>{{ item.isregular?true:false }}</td>
               </tr>
             </tbody>
           </template>
@@ -74,7 +68,7 @@ export default {
     methods:{
       getAppointments(){
         this.isfetching = true
-        axios.get(`/admin/pending/appointments`).then(({data})=>{
+        axios.get(`/admin/approve/appointments`).then(({data})=>{
           this.appointments = data
           this.isfetching = false
         })
@@ -95,7 +89,7 @@ export default {
       // }
     },
     created(){
-      this.getAuthuser()
+      this.getAppointments()
     }
 }
 </script>

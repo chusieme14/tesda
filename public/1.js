@@ -128,6 +128,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -151,7 +152,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this = this;
 
       this.isfetching = true;
-      axios.get("/admin/appointment/waiting/".concat(this.user.id)).then(function (_ref) {
+      axios.get("/admin/pending/appointments/").then(function (_ref) {
         var data = _ref.data;
         _this.appointments = data;
         _this.isfetching = false;
@@ -174,7 +175,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.isprocessing = true;
       value.user_id = this.user.id;
       var payload = value;
-      axios.put('/admin/accept/appointment', _objectSpread({}, payload)).then(function (_ref3) {
+      axios.put("/admin/accept/".concat(value.id, "/appointment")).then(function (_ref3) {
         var data = _ref3.data;
 
         _this3.getAppointments();
@@ -182,7 +183,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         _this3.isprocessing = false;
 
         _this3.$toast.open({
-          message: "Appointment of ".concat(payload.lname + ' ' + payload.fname, " is successfully updated"),
+          message: "Approved",
           position: 'top-right',
           type: "success",
           duration: 5000
@@ -225,7 +226,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         _this5.isprocessing = false;
 
         _this5.$toast.open({
-          message: "Appointment of ".concat(_this5.selectedAppointment.lname + ' ' + _this5.selectedAppointment.fname, " is successfully removed"),
+          message: "Removed",
           position: 'top-right',
           type: "success",
           duration: 5000
@@ -234,7 +235,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   },
   created: function created() {
-    this.getAuthuser();
+    this.getAppointments();
   }
 });
 
@@ -573,6 +574,10 @@ var render = function() {
                             ]),
                             _vm._v(" "),
                             _c("th", { staticClass: "text-left" }, [
+                              _vm._v("\n              Gender\n            ")
+                            ]),
+                            _vm._v(" "),
+                            _c("th", { staticClass: "text-left" }, [
                               _vm._v(
                                 "\n              Mobile number\n            "
                               )
@@ -584,16 +589,12 @@ var render = function() {
                             _vm._v(" "),
                             _c("th", { staticClass: "text-left" }, [
                               _vm._v(
-                                "\n              Person to visit\n            "
+                                "\n              Learn Number\n            "
                               )
                             ]),
                             _vm._v(" "),
                             _c("th", { staticClass: "text-left" }, [
-                              _vm._v("\n              Reason\n            ")
-                            ]),
-                            _vm._v(" "),
-                            _c("th", { staticClass: "text-center" }, [
-                              _vm._v("\n              Department\n            ")
+                              _vm._v("\n              Regular\n            ")
                             ]),
                             _vm._v(" "),
                             _c("th", { staticClass: "text-center" }, [
@@ -607,21 +608,23 @@ var render = function() {
                           _vm._l(_vm.appointments, function(item) {
                             return _c("tr", { key: item.id }, [
                               _c("td", [
-                                _vm._v(_vm._s(item.fname + " " + item.lname))
+                                _vm._v(
+                                  _vm._s(item.first_name + " " + item.last_name)
+                                )
                               ]),
                               _vm._v(" "),
                               _c("td", [_vm._v(_vm._s(item.email))]),
                               _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(item.gender))]),
+                              _vm._v(" "),
                               _c("td", [_vm._v(_vm._s(item.mobile_number))]),
                               _vm._v(" "),
-                              _c("td", [_vm._v(_vm._s(item.appt_date))]),
+                              _c("td", [_vm._v(_vm._s(item.created_at))]),
                               _vm._v(" "),
-                              _c("td", [_vm._v(_vm._s(item.PTV))]),
+                              _c("td", [_vm._v(_vm._s(item.learn_number))]),
                               _vm._v(" "),
-                              _c("td", [_vm._v(_vm._s(item.reason))]),
-                              _vm._v(" "),
-                              _c("td", { staticClass: "text-center" }, [
-                                _vm._v(_vm._s(item.department.short_name))
+                              _c("td", [
+                                _vm._v(_vm._s(item.isregular ? true : false))
                               ]),
                               _vm._v(" "),
                               _c(
@@ -644,26 +647,6 @@ var render = function() {
                                       }
                                     },
                                     [_c("v-icon", [_vm._v("mdi-check")])],
-                                    1
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "v-btn",
-                                    {
-                                      attrs: {
-                                        fab: "",
-                                        "x-small": "",
-                                        color: "success",
-                                        disabled: _vm.isprocessing
-                                      },
-                                      on: {
-                                        click: function($event) {
-                                          ;(_vm.selectedAppointment = item),
-                                            (_vm.drawer = true)
-                                        }
-                                      }
-                                    },
-                                    [_c("v-icon", [_vm._v(" mdi-pencil ")])],
                                     1
                                   ),
                                   _vm._v(" "),

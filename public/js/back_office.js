@@ -20866,34 +20866,6 @@ var render = function() {
                     "v-list",
                     [
                       _c(
-                        "v-list-item",
-                        {
-                          class: _vm.getCurrentUrl == "list" ? "active" : "",
-                          attrs: { link: "" }
-                        },
-                        [
-                          _c(
-                            "v-list-item-icon",
-                            [_c("v-icon", [_vm._v("mdi-account-box")])],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "router-link",
-                            {
-                              staticClass: "mt-2",
-                              attrs: {
-                                tag: "v-list-item-content",
-                                to: { name: "list" }
-                              }
-                            },
-                            [_c("p", [_vm._v("Users")])]
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
                         "v-list-group",
                         {
                           attrs: {
