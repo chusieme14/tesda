@@ -152,7 +152,6 @@
                     chips
                     accept="image/*"
                     multiple
-                    ref="file_input"
                     label="File input"
                     @change="uploadFile()"
                 ></v-file-input>
@@ -339,7 +338,7 @@ export default {
                 course_qualification:'',
                 scholar_type:'',
             },
-            dialog:true,
+            dialog:false,
             rules: {
               required: value => !!value || 'Required.',
               counter: value => value.length <= 20 || 'Max 20 characters',

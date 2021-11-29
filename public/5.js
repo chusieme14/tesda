@@ -310,7 +310,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 var VueFormulate = __webpack_require__(/*! @braid/vue-formulate */ "./node_modules/@braid/vue-formulate/dist/formulate.esm.js");
 
 Vue.use(VueFormulate["default"]);
@@ -380,7 +379,7 @@ Vue.use(VueFormulate["default"]);
         course_qualification: '',
         scholar_type: ''
       },
-      dialog: true,
+      dialog: false,
       rules: {
         required: function required(value) {
           return !!value || 'Required.';
@@ -902,7 +901,6 @@ var render = function() {
                     },
                     [
                       _c("v-file-input", {
-                        ref: "file_input",
                         attrs: {
                           chips: "",
                           accept: "image/*",
