@@ -11,7 +11,7 @@
                 <template v-for="requirement in requirements">
                     <h4>{{requirement}}</h4>
                 </template>
-                <p class="mt-3">Regular Program <br>
+                <p class="mt-3">
                     Scholarship Program
                 </p>
                 <v-btn @click="$router.push({name:'enroll'})" color="white" text width="100%"> CONTINUE </v-btn>

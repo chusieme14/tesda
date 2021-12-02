@@ -432,8 +432,6 @@ var render = function() {
               }),
               _vm._v(" "),
               _c("p", { staticClass: "mt-3" }, [
-                _vm._v("Regular Program "),
-                _c("br"),
                 _vm._v("\n                Scholarship Program\n            ")
               ]),
               _vm._v(" "),
